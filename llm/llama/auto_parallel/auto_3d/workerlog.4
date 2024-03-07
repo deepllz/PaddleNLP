@@ -1,0 +1,1388 @@
+grep: warning: GREP_OPTIONS is deprecated; please use an alias or script
+[33m[2024-03-07 14:18:38,253] [ WARNING][0m - evaluation_strategy reset to IntervalStrategy.STEPS for do_eval is True. you can also set evaluation_strategy='epoch'.[0m
+/root/zzh/codes/PaddleNLP/paddlenlp/trainer/training_args.py:887: UserWarning: `--sharding_parallel_degree` is useful only when `--sharding` is specified.
+  warnings.warn("`--sharding_parallel_degree` is useful only when `--sharding` is specified.")
+[32m[2024-03-07 14:18:38,254] [    INFO][0m - PP configs:{"enable":"True","schedule_mode":"VPP","vpp_degree":"1","vpp_seg_method":"","micro_batch_size":"1","accumulate_steps":"2","generation_batch_size":"1","enable_send_recv_overlap":"False","job_schedule_profiler_start":"-1","job_schedule_profiler_stop":"-1",}, use master_grad: False[0m
+[2024-03-07 14:18:38,255] [    INFO] distributed_strategy.py:214 - distributed strategy initialized
+======================= Modified FLAGS detected =======================
+FLAGS(name='FLAGS_cublas_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cublas/lib', default_value='')
+FLAGS(name='FLAGS_cudnn_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cudnn/lib', default_value='')
+FLAGS(name='FLAGS_selected_gpus', current_value='4', default_value='')
+FLAGS(name='FLAGS_cusparse_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cusparse/lib', default_value='')
+FLAGS(name='FLAGS_cupti_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cuda_cupti/lib', default_value='')
+FLAGS(name='FLAGS_nccl_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/nccl/lib', default_value='')
+FLAGS(name='FLAGS_cusolver_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cusolver/lib', default_value='')
+FLAGS(name='FLAGS_curand_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/curand/lib', default_value='')
+=======================================================================
+I0307 14:18:38.257082 26498 tcp_utils.cc:107] Retry to connect to 10.127.24.147:42948 while the server is not yet listening.
+I0307 14:18:41.257354 26498 tcp_utils.cc:130] Successfully connected to 10.127.24.147:42948
+I0307 14:18:41.258567 26498 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:18:41.258603 26498 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+I0307 14:18:41.261658 26498 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:18:41.261689 26498 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+[2024-03-07 14:18:41,261] [    INFO] topology.py:371 - Total 4 pipe comm group(s) create successfully!
+W0307 14:18:41.293824 26498 gpu_resources.cc:119] Please NOTE: device: 4, GPU Compute Capability: 7.0, Driver API Version: 11.0, Runtime API Version: 11.8
+W0307 14:18:41.329834 26498 gpu_resources.cc:164] device: 4, cuDNN Version: 8.6.
+W0307 14:18:41.329890 26498 gpu_resources.cc:196] WARNING: device: 4. The installed Paddle is compiled with CUDA 11.8, but CUDA runtime version in your machine is 11.0, which may cause serious incompatible bug. Please recompile or reinstall Paddle with compatible CUDA version.
+I0307 14:18:44.601716 26498 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:18:44.601783 26498 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+[2024-03-07 14:18:44,601] [    INFO] topology.py:371 - Total 4 data comm group(s) create successfully!
+I0307 14:18:44.602293 26498 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:18:44.602303 26498 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+[2024-03-07 14:18:44,602] [    INFO] topology.py:371 - Total 4 model comm group(s) create successfully!
+[2024-03-07 14:18:44,602] [    INFO] topology.py:371 - Total 8 sharding comm group(s) create successfully!
+I0307 14:18:44.602576 26498 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:18:44.602584 26498 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+I0307 14:18:44.602635 26498 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:18:44.602641 26498 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+[2024-03-07 14:18:44,602] [    INFO] topology.py:293 - HybridParallelInfo: rank_id: 4, mp_degree: 2, sharding_degree: 1, pp_degree: 2, dp_degree: 2, sep_degree: 1, mp_group: [4, 5],  sharding_group: [4], pp_group: [4, 6], dp_group: [0, 4], sep:group: None, check/clip group: [4, 5, 6, 7]
+[32m[2024-03-07 14:18:44,604] [    INFO][0m - The default value for the training argument `--report_to` will change in v5 (from all installed integrations to none). In v5, you will need to use `--report_to all` to get the same behavior as now. You should start updating your code and make this info disappear :-).[0m
+[32m[2024-03-07 14:18:44,604] [    INFO][0m - {"auto_mode":"semi","gradient_scale":"True","gradient_scale_using_allreduce_avg":"False","use_cache":"True","return_numpy":"True","all_ranks":"False","split_data":"True","seed":"None","reinit":"False","recompute":"{'enable': False, 'checkpoints': [], 'no_recompute_segments': [], 'sr': 0, 'refined_ops_patterns': [], 'enable_tuning': False}","amp":"{'enable': False, 'dtype': 'float16', 'level': 'o1', 'init_loss_scaling': 32768.0, 'incr_every_n_steps': 1000, 'decr_every_n_nan_or_inf': 2, 'incr_ratio': 2.0, 'decr_ratio': 0.8, 'use_dynamic_loss_scaling': True, 'custom_white_list': [], 'custom_black_list': [], 'custom_black_varnames': [], 'use_fp16_guard': False, 'use_bf16_guard': False, 'use_master_grad': False}","sharding":"{'enable': False, 'stage': 1, 'degree': 8, 'enable_overlap': False, 'param_comm_stream_num': 1, 'grad_comm_stream_num': 1, 'param_bucket_size_numel': 1, 'grad_bucket_size_numel': 1, 'enable_hierarchical_comm': False, 'partition_algor': 'greedy_even', 'enable_tuning': False, 'tuning_range': []}","gradient_merge":"{'enable': False, 'k_steps': 1, 'avg': True, 'dp_gradient_sync_after_accumulate': False}","pipeline":"{'enable': True, 'schedule_mode': 'VPP', 'vpp_degree': 1, 'vpp_seg_method': '', 'micro_batch_size': 1, 'accumulate_steps': 2, 'generation_batch_size': 1, 'enable_send_recv_overlap': False, 'job_schedule_profiler_start': -1, 'job_schedule_profiler_stop': -1}","qat":"{'enable': False, 'channel_wise_abs_max': True, 'weight_bits': 8, 'activation_bits': 8, 'not_quant_pattern': ['skip_quant'], 'algo': None, 'onnx_format': True}","tuning":"{'enable': False, 'profile_start_step': 1, 'profile_end_step': 1, 'run_after_tuning': True, 'debug': False}","dataset":"{'enable': False, 'num_shards': 1}","fused_passes":"{'enable': False, 'fused_passes_list': []}","fused_linear_promotion":"{'enable': False}","dp_optimization":"{'enable': False, 'fuse_all_reduce_ops': True, 'fuse_grad_size_in_MB': 32, 'overlap_comm_cacl': True}","mp_optimization":"{'allreduce_matmul_grad_overlapping': False}","sp_optimization":"{'enable': False}",}[0m
+[32m[2024-03-07 14:18:44,605] [    INFO][0m - The global seed is set to 46, local seed is set to 54 and random seed is set to 42.[0m
+======================= Modified FLAGS detected =======================
+FLAGS(name='FLAGS_cublas_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cublas/lib', default_value='')
+FLAGS(name='FLAGS_cudnn_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cudnn/lib', default_value='')
+FLAGS(name='FLAGS_selected_gpus', current_value='4', default_value='')
+FLAGS(name='FLAGS_cusparse_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cusparse/lib', default_value='')
+FLAGS(name='FLAGS_cupti_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cuda_cupti/lib', default_value='')
+FLAGS(name='FLAGS_nccl_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/nccl/lib', default_value='')
+FLAGS(name='FLAGS_cusolver_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cusolver/lib', default_value='')
+FLAGS(name='FLAGS_curand_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/curand/lib', default_value='')
+=======================================================================
+[35m[2024-03-07 14:18:44,606] [   DEBUG][0m - ============================================================[0m
+[35m[2024-03-07 14:18:44,607] [   DEBUG][0m -      Model Configuration Arguments      [0m
+[35m[2024-03-07 14:18:44,607] [   DEBUG][0m - paddle commit id              : ce649b1d58ba86493d9cd1f3ae11764e95806498[0m
+[35m[2024-03-07 14:18:44,607] [   DEBUG][0m - paddlenlp commit id           : e3cb5d239b91a370a2a91f113ab22052d5711748.dirty[0m
+[35m[2024-03-07 14:18:44,607] [   DEBUG][0m - config_name                   : None[0m
+[35m[2024-03-07 14:18:44,607] [   DEBUG][0m - continue_training             : False[0m
+[35m[2024-03-07 14:18:44,607] [   DEBUG][0m - fuse_attention_ffn            : False[0m
+[35m[2024-03-07 14:18:44,607] [   DEBUG][0m - fuse_attention_qkv            : False[0m
+[35m[2024-03-07 14:18:44,607] [   DEBUG][0m - fuse_sequence_parallel_allreduce: False[0m
+[35m[2024-03-07 14:18:44,607] [   DEBUG][0m - hidden_size                   : None[0m
+[35m[2024-03-07 14:18:44,607] [   DEBUG][0m - intermediate_size             : None[0m
+[35m[2024-03-07 14:18:44,608] [   DEBUG][0m - model_name_or_path            : facebook/llama-7b[0m
+[35m[2024-03-07 14:18:44,608] [   DEBUG][0m - model_type                    : llama[0m
+[35m[2024-03-07 14:18:44,608] [   DEBUG][0m - no_recompute_layers           : None[0m
+[35m[2024-03-07 14:18:44,608] [   DEBUG][0m - num_attention_heads           : None[0m
+[35m[2024-03-07 14:18:44,608] [   DEBUG][0m - num_hidden_layers             : 8[0m
+[35m[2024-03-07 14:18:44,608] [   DEBUG][0m - pp_recompute_interval         : 1[0m
+[35m[2024-03-07 14:18:44,608] [   DEBUG][0m - recompute_granularity         : full[0m
+[35m[2024-03-07 14:18:44,608] [   DEBUG][0m - recompute_use_reentrant       : False[0m
+[35m[2024-03-07 14:18:44,608] [   DEBUG][0m - sequence_parallel             : False[0m
+[35m[2024-03-07 14:18:44,608] [   DEBUG][0m - tokenizer_name_or_path        : facebook/llama-7b[0m
+[35m[2024-03-07 14:18:44,608] [   DEBUG][0m - use_flash_attention           : False[0m
+[35m[2024-03-07 14:18:44,608] [   DEBUG][0m - use_fused_rms_norm            : True[0m
+[35m[2024-03-07 14:18:44,609] [   DEBUG][0m - use_fused_rope                : False[0m
+[35m[2024-03-07 14:18:44,609] [   DEBUG][0m - virtual_pp_degree             : 2[0m
+[35m[2024-03-07 14:18:44,609] [   DEBUG][0m - vocab_size                    : None[0m
+[35m[2024-03-07 14:18:44,609] [   DEBUG][0m - [0m
+[35m[2024-03-07 14:18:44,609] [   DEBUG][0m - ============================================================[0m
+[35m[2024-03-07 14:18:44,609] [   DEBUG][0m -       Data Configuration Arguments      [0m
+[35m[2024-03-07 14:18:44,609] [   DEBUG][0m - paddle commit id              : ce649b1d58ba86493d9cd1f3ae11764e95806498[0m
+[35m[2024-03-07 14:18:44,609] [   DEBUG][0m - paddlenlp commit id           : e3cb5d239b91a370a2a91f113ab22052d5711748.dirty[0m
+[35m[2024-03-07 14:18:44,609] [   DEBUG][0m - data_cache                    : None[0m
+[35m[2024-03-07 14:18:44,609] [   DEBUG][0m - data_impl                     : mmap[0m
+[35m[2024-03-07 14:18:44,609] [   DEBUG][0m - input_dir                     : ./data[0m
+[35m[2024-03-07 14:18:44,610] [   DEBUG][0m - max_seq_length                : 2048[0m
+[35m[2024-03-07 14:18:44,610] [   DEBUG][0m - share_folder                  : False[0m
+[35m[2024-03-07 14:18:44,610] [   DEBUG][0m - skip_warmup                   : True[0m
+[35m[2024-03-07 14:18:44,610] [   DEBUG][0m - split                         : 949,50,1[0m
+[35m[2024-03-07 14:18:44,610] [   DEBUG][0m - [0m
+[33m[2024-03-07 14:18:44,610] [ WARNING][0m - Process rank: 4, device: gpu, world_size: 8, distributed training: True, 16-bits training: False[0m
+[32m[2024-03-07 14:18:44,610] [    INFO][0m - We are using (<class 'paddlenlp.transformers.llama.tokenizer.LlamaTokenizer'>, False) to load 'facebook/llama-7b'.[0m
+[32m[2024-03-07 14:18:44,611] [    INFO][0m - Already cached /root/.paddlenlp/models/facebook/llama-7b/sentencepiece.bpe.model[0m
+[32m[2024-03-07 14:18:44,628] [    INFO][0m - tokenizer config file saved in /root/.paddlenlp/models/facebook/llama-7b/tokenizer_config.json[0m
+[32m[2024-03-07 14:18:44,629] [    INFO][0m - Special tokens file saved in /root/.paddlenlp/models/facebook/llama-7b/special_tokens_map.json[0m
+[32m[2024-03-07 14:18:44,691] [    INFO][0m - Found /root/.paddlenlp/models/facebook/llama-7b/config.json[0m
+[32m[2024-03-07 14:18:44,693] [    INFO][0m - Loading configuration file /root/.paddlenlp/models/facebook/llama-7b/config.json[0m
+[32m[2024-03-07 14:18:44,693] [    INFO][0m - Reset vocab size to 32000 for batter amp peformance.[0m
+Final pre-training config: LlamaConfig {
+  "alibi": false,
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "bos_token_id": 1,
+  "eos_token_id": 2,
+  "fuse_attention_ffn": false,
+  "fuse_attention_qkv": false,
+  "fuse_sequence_parallel_allreduce": false,
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 11008,
+  "max_position_embeddings": 2048,
+  "model_type": "llama",
+  "no_recompute_layers": null,
+  "num_attention_heads": 32,
+  "num_hidden_layers": 8,
+  "num_key_value_heads": 32,
+  "pad_token_id": 0,
+  "paddlenlp_version": null,
+  "pp_recompute_interval": 1,
+  "recompute_granularity": "full",
+  "rms_norm_eps": 1e-06,
+  "rope_scaling_factor": 1.0,
+  "rope_scaling_type": null,
+  "seq_length": 2048,
+  "sequence_parallel": false,
+  "tensor_parallel_degree": 2,
+  "tensor_parallel_output": true,
+  "tie_word_embeddings": false,
+  "use_fused_rms_norm": true,
+  "use_fused_rope": false,
+  "use_recompute": false,
+  "virtual_pp_degree": 2,
+  "vocab_size": 32000
+}
+
+Using old dataet (.npy & .npz)
+searching for causual dataset, build_indices=False, share_folder False, check_rank_flag False
+build success
+searching for causual dataset, build_indices=False, share_folder False, check_rank_flag False
+build success
+searching for causual dataset, build_indices=False, share_folder False, check_rank_flag False
+build success
+[32m[2024-03-07 14:18:46,614] [    INFO][0m - Sample data for train mode.[0m
+[32m[2024-03-07 14:18:46,633] [    INFO][0m - . How?? Well thats the magic!! Its a bit complicated to explain here. Get the book and read Chapter 9. But it works! Check this out:Amazing isn't it? And the even more amazing thing is that it is not specific to factorial. See thisWoohoo!! On a roll now..You can take any recursive function, and rewrite it in the above style and the Y combinator will make a recursive version of it. How cool is that?</s> Perception.
+
+Computational models of facial attractiveness judgments.
+
+Strikingly, both models produced estimates of facial attractiveness that were indistinguishable from human ratings.
+
+The image factors that the model discovered correspond to two of the main contemporary hypotheses of averageness judgments: facial attractiveness and sexual dimorphism.
+
+This provides novel evidence for the importance of averageness and sexual dimorphism, but not symmetry, in human judgments of facial attractiveness.
+
+Very related: Computer taught to recognize female attractiveness 2008;37(1):126-42.Related ArticlesBronstad PM, Langlois JH, Russell R.We designed two computational models to replicate human facial attractiveness ratings. The primary model used partial least squares (PLS) to identify image factors associated with facial attractiveness from facial images and attractiveness ratings of those images. For comparison we also made a model similar to previous models of facial attractiveness, in that it used manually derived measurements between features as inputs, though we took the additional step of dimensionality reduction via principal component analysis (PCA) and weighting of PCA dimensions via a perceptron.Because PLS extracts a small number of image factors from the facial images that covary with attractiveness ratings of the images, it is possible to determine the information used by the model.In contrast, facial symmetry was not important to the model, and an explicit feature-based measurement of symmetry was not correlated with human judgments of facial attractiveness.</s> The news comes after the Telegraph launched a campaign calling for a fair deal for motorists. This follows a 50 per cent increase in the amount of car-related tax since Labour came to power.</s> Mengenal Gaya Bermain Poker Online Pada Pemain Profesional
+
+Mengenal Gaya Bermain Poker Online Pada Pemain Profesional – Ada beberapa hal yang harus anda ketahui ketika anda bermain poker online ini. Salah satunya adalah mengenal gaya bermain poker online pada setiap pemain yang melakukan taruhan ini. Gaya bermain ini sering dikatakan sebagai playing styles, dimana terdapat banyak sekali gaya yang harus anda ketahui. Berikut […]</s>U.S. troops working the streets of the capital fear one Iraqi weapon more than others -- a copper-plated explosive that can penetrate armor and has proved devastating to Humvees and even capable of severely damaging tanks.
+
+The power of what the military calls an EFP -- for explosively formed penetrator, or projectile -- to spray molten metal balls that punch through the armor on vehicles has some American troops rethinking their tactics. They are asking whether the U.S. should give up its reliance on making constant improvements to vehicle defenses.
+
+Instead, these troops think, it is time to leave the armor behind -- and get out and walk.
+
+“In our area, the biggest threat for us is EFPs. When you are in the vehicles, you are a big target,” said Army Staff Sgt. Cavin Moskwa, 33, of Hawaii, who patrols Baghdad’s Zafraniya neighborhood with the Bravo Battery of the 2nd Battalion, 17th Field Artillery Regiment. “But when you are dismounted... you are a lot safer.”
+
+Advertisement
+
+In the last three days, 15 U.S. troops have been killed in Iraq, nine of them in two powerful roadside bomb blasts. The military does not publicly identify the kind of weapon used in improvised explosive attacks, but the deadly nature of the blasts Wednesday and Thursday suggested that EFPs may have been used.
+
+The deaths brought to 3,545 the total number of U.S. troops killed in the Iraq theater since the March 2003 American-led invasion, the U.S. military said. Hundreds of these troops have been killed by EFPs and other kinds of improvised explosive devices, or IEDs. The Pentagon’s most recent Iraq status report said EFP attacks were at an all-time high.
+
+Foot patrols, of course, are not a fail-safe method. On city streets, snipers remain a threat. And bombs can still kill dismounted troops. But when blasts occur in the middle of a foot patrol, the number of casualties are generally lower because the troops are more spread out.
+
+Before a foot patrol last week through a neighborhood next to Baghdad’s Sadr City district, a private with Alpha Company of the Army’s 1st Battalion, 8th Cavalry Regiment, began complaining about having to walk. But EFPs have claimed the lives of several soldiers in the unit, and Sgt. Leland Kidd, 28, of Gonzales, Texas, said the private should be thankful they were on foot.
+
+Advertisement
+
+“When I walk on my feet, I don’t have to worry about being blown up,” Kidd told the private. “In the vehicle, I have to.”
+
+Top commanders have been encouraging more such units in Baghdad to take just that tack.
+
+A counterinsurgency guidance memo released last week by Army Lt. Gen Raymond T. Odierno, the commander of day-to-day military operations, urges Iraqi and American troops to “get out and walk.”
+
+The memo argues that although Humvees offer protection, they also make units predictable and “insulate us from the Iraqi people we intend to secure.”
+
+Advertisement
+
+The original draft of the memo, written by counterinsurgency expert David Kilcullen, goes further. It notes that EFP attacks on Humvees damage them heavily. “So we gain little in safety, but sacrifice much in effectiveness,” the draft reads.
+
+One reason for the increased number of troops victimized by roadside bombs is that there are more forces in Iraq now, Marine Gen. Peter Pace, chairman of the Joint Chiefs of Staff, said at a Pentagon news conference Thursday. This month, the final additional American combat units arrived in Baghdad, as part of a counterinsurgency strategy announced by President Bush in January that has increased the U.S. military presence in Iraq by 28,500 troops.
+
+“As we’re taking the fight to the enemy with the additional troops, we can expect that there’s going to be tough fighting ahead,” Pace said. “So it is an expectation that this surge is going to result in more contact and therefore more casualties.”
+
+But another reason for the rising death toll is the ability of Iraq’s militants to adapt to new U.S. military tactics.
+
+Advertisement
+
+During the 2003 invasion, most American Humvees were outfitted with flimsy canvas doors. When the first improvised explosive devices made from artillery shells appeared, the military scrambled to put stronger armor on the vehicles. Since then, the military has repeatedly upgraded Humvee armor as militants have made bigger and bigger bombs.
+
+But the small and easily hidden EFPs, which often are powered by C-4 plastic explosives, are not just a more powerful IED. Military personnel experienced with the projectiles say that what makes the weapons so deadly is that they use the Americans’ own armor against them. As the hot copper slug melts through the armor of a Humvee, it transforms the protective plating into shrapnel that sprays into the passenger cabin, they say.
+
+“We joked about going back to canvas doors. That way, unless it hits you directly, you are OK,” said Army Sgt. William Bowman, 31, of Fort Myers, Fla.
+
+But to Moskwa, the staff sergeant from Hawaii, the question of armor is no joke. Moskwa, who served as an Army recruiter in Pasadena before deploying to Iraq, thinks armor on vehicles and body armor on troops are too restrictive, hampering a service member’s ability to move quickly and agilely.
+
+Advertisement
+
+“I would rather go out without any armor or gear,” he said. “If an EFP hits the vehicle, you are dead anyway no[0m
+[32m[2024-03-07 14:18:46,634] [    INFO][0m - Sample data for valid mode.[0m
+[32m[2024-03-07 14:18:46,651] [    INFO][0m - intolerant of large, polluting industrial plants on their doorsteps. Second, American power companies are fearful that they will soon have to pay for one particular pollutant, carbon dioxide, as is starting to happen in other parts of the rich world. Having invested heavily in gas-fired stations, only to find themselves locked into an increasingly expensive fuel, they do not want to make another mistake.
+
+That has opened up a capacity gap and an opportunity for wind and sunlight. The future price of these resources—zero—is known. That certainty has economic value as a hedge, even if the capital cost of wind and solar power stations is, at the moment, higher than that of coal-fired ones.
+
+The reasons for the boom, then, are tangled, and the way they are perceived may change. Global warming, a long-range phenomenon, may not be uppermost in people's minds during an economic downturn. High fuel prices may fall as new sources of supply are exploited to fill rising demand from Asia. Security of supply may improve if hostile governments are replaced by friendly ones and sources become more diversified. But none of the reasons is likely to go away entirely.
+
+Global warming certainly will not. “Peak oil”, if oil means the traditional sort that comes cheaply out of holes in the ground, probably will arrive soon. There is oil aplenty of other sorts (tar sands, liquefied coal and so on), so the stuff is unlikely to run out for a long time yet. But it will get more expensive to produce, putting a floor on the price that is way above today's. And political risk will always be there—particularly for oil, which is so often associated with bad government for the simple reason that its very presence causes bad government in states that do not have strong institutions to curb their politicians.
+
+A prize beyond the dreams of avarice
+
+The market for energy is huge. At present, the world's population consumes about 15 terawatts of power. (A terawatt is 1,000 gigawatts, and a gigawatt is the capacity of the largest sort of coal-fired power station.) That translates into a business worth $6 trillion a year—about a tenth of the world's economic output—according to John Doerr, a venture capitalist who is heavily involved in the industry. And by 2050, power consumption is likely to have risen to 30 terawatts.
+
+Scale is one of the important differences between the coming energy boom, if it materialises, and its recent predecessors—particularly those that relied on information technology, a market measured in mere hundreds of billions. Another difference is that new information technologies tend to be disruptive, forcing the replacement of existing equipment, whereas, say, building wind farms does not force the closure of coal-fired power stations.
+
+For both of these reasons, any transition from an economy based on fossil fuels to one based on renewable, alternative, green energy—call it what you will—is likely to be slow, as similar changes have been in the past (see chart 1). On the other hand, the scale of the market provides opportunities for alternatives to prove themselves at the margin and then move into the mainstream, as is happening with wind power at the moment. And some energy technologies do have the potential to be disruptive. Plug-in cars, for example, could be fuelled with electricity at a price equivalent to 25 cents a litre of petrol. That could shake up the oil, carmaking and electricity industries all in one go.
+
+The innovation lull of the past few decades also provides opportunities for technological leapfrogging. Indeed, it may be that the field of energy gives the not-quite-booms in biotechnology and nanotechnology the industrial applications they need to grow really big, and that the three aspiring booms will thus merge into one.
+
+The possibility of thus recapturing the good times of their youth has brought many well-known members of the “technorati” out of their homes in places like Woodside, California. Energy has become supercool. Elon Musk, who co-founded PayPal, has developed a battery-powered sports car. Larry Page and Sergey Brin, the founders of Google, have started an outfit called Google.org that is searching for a way to make renewable energy truly cheaper than coal (or RE
+
+Vinod Khosla, one of the founders of Sun Microsystems, is turning his considerable skills as a venture capitalist towards renewable energy, as are Robert Metcalfe, who invented the ethernet system used to connect computers together in local networks, and Mr Doerr, who works at Kleiner Perkins Caufield & Byers, one of Silicon Valley's best-known venture-capital firms. Sir Richard Branson, too, is getting in on the act with his Virgin Green Fund.
+
+This renewed interest in energy is bringing forth a raft of ideas, some bright, some batty, that is indeed reminiscent of the dotcom boom. As happened in that boom, most of these ideas will come to naught. But there could just be a PayPal or a Google or a Sun among them.
+
+More traditional companies are also taking an interest. General Electric (GE), a large American engineering firm, already has a thriving wind-turbine business and is gearing up its solar-energy business. The energy researchers at its laboratories in Schenectady, New York, enjoy much of the intellectual freedom associated with start-up firms, combined with a secure supply of money.
+
+Meanwhile, BP and Shell, two of the world's biggest oil companies, are sponsoring both academic researchers and new, small firms with bright ideas, as is DuPont, one of the biggest chemical companies. Not everyone has joined in. Exxon Mobil, the world's largest oil company not in government hands, is conspicuously absent. But in many boardrooms renewables are no longer seen as just a way of keeping environmentalists off companies' backs.
+
+Some people complain that many existing forms of renewable energy rely on subsidies or other forms of special treatment for their viability. On the surface, that is true. Look beneath, though, and the whole energy sector is riddled with subsidies, both explicit and hidden, and costs that are not properly accounted for. Drawing on the work of people like Boyden Gray, a former White House counsel, Mr Woolsey estimates that American oil companies receive preferential treatment from their government worth more than $250 billion a year. And the Intergovernmental Panel on Climate Change (IPCC), a United Nations-appointed group of scientific experts, reckons that fossil fuels should carry a tax of $20-50 for every tonne of carbon dioxide they generate in order to pay for the environmental effects of burning them (hence the fears of the power-generators).
+
+So the subsidies and mandates offered to renewable sources of power such as wind turbines often just level the playing field. It is true that some subsidies amount to unwarranted market-rigging: examples include those handed by cloudy Germany to its solar-power industry and by America to its maize-based ethanol farmers when Brazilian sugar-based ethanol is far cheaper. Others, though, such as a requirement that a certain proportion of electricity be derived from non-fossil-fuel sources, make no attempt to pick particular technological winners. They merely act to stimulate innovation by guaranteeing a market to things that actually work.
+
+If the world were rational, all of these measures would be swept away and replaced by a proper tax on carbon—as is starting to happen in Europe, where the price arrived at by the cap-and-trade system being introduced is close to the IPCC's recommendation. If that occurred, wind-based electricity would already be competitive with fossil fuels and others would be coming close. Failing that, special treatment for alternatives is probably the least bad option—though such measures need to be crafted in ways that favour neither incumbents nor particular ways of doing things, and need to be withdrawn when they are no longer necessary.
+
+The poor world turns greener too
+
+That, at least, is the view from the rich world. But poorer, rapidly developing countries are also taking more of an interest in renewable energy sources, despite assertions to the contrary by some Western politicians and businessmen. It is true that China is building coal-fired power stations at a blazing rate. But it also has a large wind-generation capacity, which is expected to grow by two-thirds this year, and is the world's second-largest manufacturer of solar panels—not to mention having the largest number of solar-heated rooftop hot-water systems in its buildings.
+
+Brazil, meanwhile, has the world's second-largest (just behind America) and most econom[0m
+[32m[2024-03-07 14:18:46,652] [    INFO][0m - The global seed is set to 46, local seed is set to 54 and random seed is set to 42.[0m
+[32m[2024-03-07 14:18:46,653] [    INFO][0m - Successfully to apply @to_static to the whole model.[0m
+[32m[2024-03-07 14:18:46,772] [    INFO][0m - max_steps is given, it will override any value given in num_train_epochs[0m
+[35m[2024-03-07 14:18:46,772] [   DEBUG][0m - ============================================================[0m
+[35m[2024-03-07 14:18:46,772] [   DEBUG][0m -     Training Configuration Arguments    [0m
+[35m[2024-03-07 14:18:46,772] [   DEBUG][0m - paddle commit id              : ce649b1d58ba86493d9cd1f3ae11764e95806498[0m
+[35m[2024-03-07 14:18:46,773] [   DEBUG][0m - paddlenlp commit id           : e3cb5d239b91a370a2a91f113ab22052d5711748.dirty[0m
+[35m[2024-03-07 14:18:46,773] [   DEBUG][0m - _no_sync_in_gradient_accumulation: True[0m
+[35m[2024-03-07 14:18:46,773] [   DEBUG][0m - adam_beta1                    : 0.9[0m
+[35m[2024-03-07 14:18:46,773] [   DEBUG][0m - adam_beta2                    : 0.999[0m
+[35m[2024-03-07 14:18:46,773] [   DEBUG][0m - adam_epsilon                  : 1e-08[0m
+[35m[2024-03-07 14:18:46,773] [   DEBUG][0m - amp_custom_black_list         : None[0m
+[35m[2024-03-07 14:18:46,773] [   DEBUG][0m - amp_custom_white_list         : None[0m
+[35m[2024-03-07 14:18:46,773] [   DEBUG][0m - amp_master_grad               : False[0m
+[35m[2024-03-07 14:18:46,773] [   DEBUG][0m - autotuner_benchmark           : False[0m
+[35m[2024-03-07 14:18:46,774] [   DEBUG][0m - bf16                          : False[0m
+[35m[2024-03-07 14:18:46,774] [   DEBUG][0m - bf16_full_eval                : False[0m
+[35m[2024-03-07 14:18:46,774] [   DEBUG][0m - current_device                : gpu:4[0m
+[35m[2024-03-07 14:18:46,774] [   DEBUG][0m - data_parallel_config          : [0m
+[35m[2024-03-07 14:18:46,774] [   DEBUG][0m - data_parallel_degree          : 2[0m
+[35m[2024-03-07 14:18:46,774] [   DEBUG][0m - data_parallel_rank            : 1[0m
+[35m[2024-03-07 14:18:46,774] [   DEBUG][0m - dataloader_drop_last          : False[0m
+[35m[2024-03-07 14:18:46,774] [   DEBUG][0m - dataloader_num_workers        : 1[0m
+[35m[2024-03-07 14:18:46,774] [   DEBUG][0m - dataset_rank                  : 1[0m
+[35m[2024-03-07 14:18:46,775] [   DEBUG][0m - dataset_world_size            : 2[0m
+[35m[2024-03-07 14:18:46,775] [   DEBUG][0m - decay_steps                   : 10[0m
+[35m[2024-03-07 14:18:46,775] [   DEBUG][0m - device                        : gpu[0m
+[35m[2024-03-07 14:18:46,775] [   DEBUG][0m - disable_tqdm                  : True[0m
+[35m[2024-03-07 14:18:46,775] [   DEBUG][0m - distributed_dataloader        : False[0m
+[35m[2024-03-07 14:18:46,775] [   DEBUG][0m - do_eval                       : True[0m
+[35m[2024-03-07 14:18:46,775] [   DEBUG][0m - do_export                     : False[0m
+[35m[2024-03-07 14:18:46,775] [   DEBUG][0m - do_predict                    : False[0m
+[35m[2024-03-07 14:18:46,775] [   DEBUG][0m - do_train                      : True[0m
+[35m[2024-03-07 14:18:46,775] [   DEBUG][0m - enable_auto_parallel          : True[0m
+[35m[2024-03-07 14:18:46,775] [   DEBUG][0m - enable_linear_fused_grad_add  : False[0m
+[35m[2024-03-07 14:18:46,776] [   DEBUG][0m - eval_accumulation_steps       : None[0m
+[35m[2024-03-07 14:18:46,776] [   DEBUG][0m - eval_batch_size               : 2[0m
+[35m[2024-03-07 14:18:46,776] [   DEBUG][0m - eval_iters                    : 10[0m
+[35m[2024-03-07 14:18:46,776] [   DEBUG][0m - eval_steps                    : 1000000[0m
+[35m[2024-03-07 14:18:46,776] [   DEBUG][0m - evaluation_strategy           : IntervalStrategy.STEPS[0m
+[35m[2024-03-07 14:18:46,776] [   DEBUG][0m - flatten_param_grads           : False[0m
+[35m[2024-03-07 14:18:46,776] [   DEBUG][0m - force_reshard_pp              : False[0m
+[35m[2024-03-07 14:18:46,776] [   DEBUG][0m - fp16                          : False[0m
+[35m[2024-03-07 14:18:46,776] [   DEBUG][0m - fp16_full_eval                : False[0m
+[35m[2024-03-07 14:18:46,776] [   DEBUG][0m - fp16_opt_level                : O2[0m
+[35m[2024-03-07 14:18:46,776] [   DEBUG][0m - fused_linear_param_grad_add   : False[0m
+[35m[2024-03-07 14:18:46,776] [   DEBUG][0m - gradient_accumulation_steps   : 2[0m
+[35m[2024-03-07 14:18:46,777] [   DEBUG][0m - greater_is_better             : None[0m
+[35m[2024-03-07 14:18:46,777] [   DEBUG][0m - hybrid_parallel_topo_order    : None[0m
+[35m[2024-03-07 14:18:46,777] [   DEBUG][0m - ignore_data_skip              : False[0m
+[35m[2024-03-07 14:18:46,777] [   DEBUG][0m - ignore_load_lr_and_optim      : False[0m
+[35m[2024-03-07 14:18:46,777] [   DEBUG][0m - ignore_save_lr_and_optim      : False[0m
+[35m[2024-03-07 14:18:46,777] [   DEBUG][0m - job_schedule_profiler_end     : -1[0m
+[35m[2024-03-07 14:18:46,777] [   DEBUG][0m - job_schedule_profiler_start   : -1[0m
+[35m[2024-03-07 14:18:46,777] [   DEBUG][0m - label_names                   : None[0m
+[35m[2024-03-07 14:18:46,777] [   DEBUG][0m - lazy_data_processing          : True[0m
+[35m[2024-03-07 14:18:46,777] [   DEBUG][0m - learning_rate                 : 0.0001[0m
+[35m[2024-03-07 14:18:46,777] [   DEBUG][0m - load_best_model_at_end        : False[0m
+[35m[2024-03-07 14:18:46,777] [   DEBUG][0m - load_sharded_model            : False[0m
+[35m[2024-03-07 14:18:46,778] [   DEBUG][0m - local_process_index           : 4[0m
+[35m[2024-03-07 14:18:46,778] [   DEBUG][0m - local_rank                    : 4[0m
+[35m[2024-03-07 14:18:46,778] [   DEBUG][0m - log_level                     : -1[0m
+[35m[2024-03-07 14:18:46,778] [   DEBUG][0m - log_level_replica             : -1[0m
+[35m[2024-03-07 14:18:46,778] [   DEBUG][0m - log_on_each_node              : True[0m
+[35m[2024-03-07 14:18:46,778] [   DEBUG][0m - logging_dir                   : output/llama_auto_dp2mp2pp2/runs/Mar07_14-18-38_yq01-sys-hic-k8s-v100-box-a225-0491.yq01.baidu.com[0m
+[35m[2024-03-07 14:18:46,778] [   DEBUG][0m - logging_first_step            : False[0m
+[35m[2024-03-07 14:18:46,778] [   DEBUG][0m - logging_steps                 : 1[0m
+[35m[2024-03-07 14:18:46,778] [   DEBUG][0m - logging_strategy              : IntervalStrategy.STEPS[0m
+[35m[2024-03-07 14:18:46,778] [   DEBUG][0m - logical_process_index         : 4[0m
+[35m[2024-03-07 14:18:46,779] [   DEBUG][0m - lr_end                        : 1e-07[0m
+[35m[2024-03-07 14:18:46,779] [   DEBUG][0m - lr_scheduler_type             : SchedulerType.LINEAR[0m
+[35m[2024-03-07 14:18:46,779] [   DEBUG][0m - max_evaluate_steps            : -1[0m
+[35m[2024-03-07 14:18:46,779] [   DEBUG][0m - max_grad_norm                 : 1.0[0m
+[35m[2024-03-07 14:18:46,779] [   DEBUG][0m - max_steps                     : 10[0m
+[35m[2024-03-07 14:18:46,779] [   DEBUG][0m - metric_for_best_model         : None[0m
+[35m[2024-03-07 14:18:46,779] [   DEBUG][0m - min_learning_rate             : 1e-05[0m
+[35m[2024-03-07 14:18:46,779] [   DEBUG][0m - minimum_eval_times            : None[0m
+[35m[2024-03-07 14:18:46,779] [   DEBUG][0m - no_cuda                       : False[0m
+[35m[2024-03-07 14:18:46,779] [   DEBUG][0m - num_cycles                    : 0.5[0m
+[35m[2024-03-07 14:18:46,779] [   DEBUG][0m - num_train_epochs              : 3.0[0m
+[35m[2024-03-07 14:18:46,779] [   DEBUG][0m - optim                         : OptimizerNames.ADAMW[0m
+[35m[2024-03-07 14:18:46,780] [   DEBUG][0m - optimizer_name_suffix         : None[0m
+[35m[2024-03-07 14:18:46,780] [   DEBUG][0m - output_dir                    : output/llama_auto_dp2mp2pp2[0m
+[35m[2024-03-07 14:18:46,780] [   DEBUG][0m - overwrite_output_dir          : False[0m
+[35m[2024-03-07 14:18:46,780] [   DEBUG][0m - past_index                    : -1[0m
+[35m[2024-03-07 14:18:46,780] [   DEBUG][0m - per_device_eval_batch_size    : 2[0m
+[35m[2024-03-07 14:18:46,780] [   DEBUG][0m - per_device_train_batch_size   : 1[0m
+[35m[2024-03-07 14:18:46,780] [   DEBUG][0m - pipeline_parallel_config      : [0m
+[35m[2024-03-07 14:18:46,780] [   DEBUG][0m - pipeline_parallel_degree      : 2[0m
+[35m[2024-03-07 14:18:46,780] [   DEBUG][0m - pipeline_parallel_rank        : 0[0m
+[35m[2024-03-07 14:18:46,780] [   DEBUG][0m - pipeline_schedule_mode        : VPP[0m
+[35m[2024-03-07 14:18:46,780] [   DEBUG][0m - power                         : 1.0[0m
+[35m[2024-03-07 14:18:46,781] [   DEBUG][0m - prediction_loss_only          : False[0m
+[35m[2024-03-07 14:18:46,781] [   DEBUG][0m - process_index                 : 4[0m
+[35m[2024-03-07 14:18:46,781] [   DEBUG][0m - recompute                     : False[0m
+[35m[2024-03-07 14:18:46,781] [   DEBUG][0m - refined_ops_patterns          : None[0m
+[35m[2024-03-07 14:18:46,781] [   DEBUG][0m - remove_unused_columns         : True[0m
+[35m[2024-03-07 14:18:46,781] [   DEBUG][0m - report_to                     : ['visualdl'][0m
+[35m[2024-03-07 14:18:46,781] [   DEBUG][0m - resume_from_checkpoint        : None[0m
+[35m[2024-03-07 14:18:46,781] [   DEBUG][0m - run_name                      : output/llama_auto_dp2mp2pp2[0m
+[35m[2024-03-07 14:18:46,781] [   DEBUG][0m - save_on_each_node             : False[0m
+[35m[2024-03-07 14:18:46,781] [   DEBUG][0m - save_sharded_model            : False[0m
+[35m[2024-03-07 14:18:46,781] [   DEBUG][0m - save_steps                    : 5000000[0m
+[35m[2024-03-07 14:18:46,782] [   DEBUG][0m - save_strategy                 : IntervalStrategy.STEPS[0m
+[35m[2024-03-07 14:18:46,782] [   DEBUG][0m - save_total_limit              : None[0m
+[35m[2024-03-07 14:18:46,782] [   DEBUG][0m - scale_loss                    : 1024.0[0m
+[35m[2024-03-07 14:18:46,782] [   DEBUG][0m - seed                          : 42[0m
+[35m[2024-03-07 14:18:46,782] [   DEBUG][0m - sep_parallel_degree           : 1[0m
+[35m[2024-03-07 14:18:46,782] [   DEBUG][0m - sharding                      : [][0m
+[35m[2024-03-07 14:18:46,782] [   DEBUG][0m - sharding_degree               : -1[0m
+[35m[2024-03-07 14:18:46,782] [   DEBUG][0m - sharding_parallel_config      : [0m
+[35m[2024-03-07 14:18:46,782] [   DEBUG][0m - sharding_parallel_degree      : 1[0m
+[35m[2024-03-07 14:18:46,782] [   DEBUG][0m - sharding_parallel_rank        : 0[0m
+[35m[2024-03-07 14:18:46,782] [   DEBUG][0m - should_load_dataset           : True[0m
+[35m[2024-03-07 14:18:46,782] [   DEBUG][0m - should_load_sharding_stage1_model: False[0m
+[35m[2024-03-07 14:18:46,783] [   DEBUG][0m - should_log                    : True[0m
+[35m[2024-03-07 14:18:46,783] [   DEBUG][0m - should_save                   : True[0m
+[35m[2024-03-07 14:18:46,783] [   DEBUG][0m - should_save_model_state       : True[0m
+[35m[2024-03-07 14:18:46,783] [   DEBUG][0m - should_save_sharding_stage1_model: False[0m
+[35m[2024-03-07 14:18:46,783] [   DEBUG][0m - skip_memory_metrics           : True[0m
+[35m[2024-03-07 14:18:46,783] [   DEBUG][0m - skip_profile_timer            : True[0m
+[35m[2024-03-07 14:18:46,783] [   DEBUG][0m - sr                            : 0[0m
+[35m[2024-03-07 14:18:46,783] [   DEBUG][0m - strategy                      : {"auto_mode":"semi","gradient_scale":"True","gradient_scale_using_allreduce_avg":"False","use_cache":"True","return_numpy":"True","all_ranks":"False","split_data":"True","seed":"None","reinit":"False","recompute":"{'enable': False, 'checkpoints': [], 'no_recompute_segments': [], 'sr': 0, 'refined_ops_patterns': [], 'enable_tuning': False}","amp":"{'enable': False, 'dtype': 'float16', 'level': 'o1', 'init_loss_scaling': 32768.0, 'incr_every_n_steps': 1000, 'decr_every_n_nan_or_inf': 2, 'incr_ratio': 2.0, 'decr_ratio': 0.8, 'use_dynamic_loss_scaling': True, 'custom_white_list': [], 'custom_black_list': [], 'custom_black_varnames': [], 'use_fp16_guard': False, 'use_bf16_guard': False, 'use_master_grad': False}","sharding":"{'enable': False, 'stage': 1, 'degree': 8, 'enable_overlap': False, 'param_comm_stream_num': 1, 'grad_comm_stream_num': 1, 'param_bucket_size_numel': 1, 'grad_bucket_size_numel': 1, 'enable_hierarchical_comm': False, 'partition_algor': 'greedy_even', 'enable_tuning': False, 'tuning_range': []}","gradient_merge":"{'enable': False, 'k_steps': 1, 'avg': True, 'dp_gradient_sync_after_accumulate': False}","pipeline":"{'enable': True, 'schedule_mode': 'VPP', 'vpp_degree': 2, 'vpp_seg_method': 'LlamaDecoderLayerAuto', 'micro_batch_size': 1, 'accumulate_steps': 2, 'generation_batch_size': 1, 'enable_send_recv_overlap': False, 'job_schedule_profiler_start': -1, 'job_schedule_profiler_stop': -1}","qat":"{'enable': False, 'channel_wise_abs_max': True, 'weight_bits': 8, 'activation_bits': 8, 'not_quant_pattern': ['skip_quant'], 'algo': None, 'onnx_format': True}","tuning":"{'enable': False, 'profile_start_step': 1, 'profile_end_step': 1, 'run_after_tuning': True, 'debug': False}","dataset":"{'enable': False, 'num_shards': 1}","fused_passes":"{'enable': False, 'fused_passes_list': []}","fused_linear_promotion":"{'enable': False}","dp_optimization":"{'enable': False, 'fuse_all_reduce_ops': True, 'fuse_grad_size_in_MB': 32, 'overlap_comm_cacl': True}","mp_optimization":"{'allreduce_matmul_grad_overlapping': False}","sp_optimization":"{'enable': False}",}[0m
+[35m[2024-03-07 14:18:46,784] [   DEBUG][0m - tensor_parallel_config        : [0m
+[35m[2024-03-07 14:18:46,784] [   DEBUG][0m - tensor_parallel_degree        : 2[0m
+[35m[2024-03-07 14:18:46,784] [   DEBUG][0m - tensor_parallel_rank          : 0[0m
+[35m[2024-03-07 14:18:46,784] [   DEBUG][0m - test_iters                    : 100[0m
+[35m[2024-03-07 14:18:46,784] [   DEBUG][0m - to_static                     : True[0m
+[35m[2024-03-07 14:18:46,784] [   DEBUG][0m - train_batch_size              : 1[0m
+[35m[2024-03-07 14:18:46,784] [   DEBUG][0m - unified_checkpoint            : False[0m
+[35m[2024-03-07 14:18:46,784] [   DEBUG][0m - unified_checkpoint_config     : [0m
+[35m[2024-03-07 14:18:46,784] [   DEBUG][0m - use_hybrid_parallel           : False[0m
+[35m[2024-03-07 14:18:46,784] [   DEBUG][0m - virtual_pipeline_seg_method   : LlamaDecoderLayerAuto[0m
+[35m[2024-03-07 14:18:46,784] [   DEBUG][0m - wandb_api_key                 : None[0m
+[35m[2024-03-07 14:18:46,785] [   DEBUG][0m - warmup_ratio                  : 0.01[0m
+[35m[2024-03-07 14:18:46,785] [   DEBUG][0m - warmup_steps                  : 0[0m
+[35m[2024-03-07 14:18:46,785] [   DEBUG][0m - weight_decay                  : 0.01[0m
+[35m[2024-03-07 14:18:46,785] [   DEBUG][0m - weight_name_suffix            : None[0m
+[35m[2024-03-07 14:18:46,785] [   DEBUG][0m - world_size                    : 8[0m
+[35m[2024-03-07 14:18:46,785] [   DEBUG][0m - [0m
+[32m[2024-03-07 14:18:46,785] [    INFO][0m - Starting training from resume_from_checkpoint : None[0m
+[32m[2024-03-07 14:18:46,800] [    INFO][0m - [timelog] checkpoint loading time: 0.00s (2024-03-07 14:18:46) [0m
+[32m[2024-03-07 14:18:46,800] [    INFO][0m - ***** Running training *****[0m
+[32m[2024-03-07 14:18:46,800] [    INFO][0m -   Num examples = 57,600[0m
+[32m[2024-03-07 14:18:46,800] [    INFO][0m -   Num Epochs = 1[0m
+[32m[2024-03-07 14:18:46,801] [    INFO][0m -   Instantaneous batch size per device = 1[0m
+[32m[2024-03-07 14:18:46,801] [    INFO][0m -   Total train batch size (w. parallel, distributed & accumulation) = 4[0m
+[32m[2024-03-07 14:18:46,801] [    INFO][0m -   Gradient Accumulation steps = 2[0m
+[32m[2024-03-07 14:18:46,801] [    INFO][0m -   Total optimization steps = 10[0m
+[32m[2024-03-07 14:18:46,801] [    INFO][0m -   Total num train samples = 40[0m
+[35m[2024-03-07 14:18:46,802] [   DEBUG][0m -   Number of trainable parameters = 1,881,214,976 (per device)[0m
+[2024-03-07 14:18:46,806] [    INFO] cluster.py:914 - Node Count: 1, Local Device Size: 8, GPU Model: V100, GPU Memory: 32GB, World size: 8, EndPoint: 10.127.24.147:42953.
+[2024-03-07 14:18:46,807] [    INFO] engine.py:202 - Distribute training by paddle.distributed.launch
+[2024-03-07 14:18:46,807] [    INFO] distributed_strategy.py:214 - distributed strategy initialized
+[2024-03-07 14:18:46,807] [ WARNING] fleet.py:272 - The dygraph parallel environment has been initialized.
+[2024-03-07 14:18:46,808] [ WARNING] fleet.py:295 - The dygraph hybrid parallel environment has been initialized.
+[2024-03-07 14:18:47,456] [    INFO] engine.py:660 - Building model with 'to_static' method.
+INFO 2024-03-07 14:18:47,458 helper.py:249] start to build program for mode = train.
+/usr/local/lib/python3.8/dist-packages/paddle/base/framework.py:3150: UserWarning: The Attr(force_cpu) of Op(fill_constant) will be deprecated in the future, please use 'device_guard' instead. 'device_guard' has higher priority when they are used at the same time.
+  warnings.warn(
+I0307 14:18:48.648077 26498 custom_operator.cc:1296] register pir custom op :fused_rms_norm
+I0307 14:18:48.648171 26498 custom_operator.cc:1296] register pir custom op :fused_rms_norm_grad
+I0307 14:18:48.648303 26498 custom_operator.cc:1296] register pir custom op :fused_ln
+I0307 14:18:48.648325 26498 custom_operator.cc:1296] register pir custom op :fused_ln_grad
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/root/.cache/paddle/to_static_tmp/26498/LlamaPretrainingCriterion3DAuto_forwardo2pi1q9p.py:29: UserWarning: enable_parallel_cross_entropy, the vocab_size should be splited: 32000, 32000
+  _jst.Call(_jst.Ld(_jst.Ld(warnings).warn))(f'enable_parallel_cross_entropy, the vocab_size should be splited: {_jst.Ld(_jst.Shape(_jst.Ld(prediction_scores))[-1])}, {_jst.Ld(_jst.Ld(_jst.Ld(self).config).vocab_size)}')
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+WARNING 2024-03-07 14:18:52,425 helper.py:467] The startup_program is not built by `lazy init`.
+WARNING 2024-03-07 14:18:52,428 helper.py:467] The startup_program is not built by `lazy init`.
+WARNING: there are some orphan tensors or ops which are not used in the execution.
+Thu Mar 07 14:18:53-INFO: Using Auto VPP
+Thu Mar 07 14:18:53-INFO: stage=[0], chunk_id=[0], layer_name=[['LlamaDecoderLayerAuto', 'LlamaDecoderLayerAuto_1']]
+Thu Mar 07 14:18:53-INFO: start op: [lookup_table_v2]: [['input0', 'embedding_0.w_0.dist']] [['embedding_0.tmp_0']]
+Thu Mar 07 14:18:53-INFO: end op: [elementwise_add]: [['tmp_26', 'linear_13.tmp_0']] [['tmp_27']]
+Thu Mar 07 14:18:53-INFO: stage=[1], chunk_id=[0], layer_name=[['LlamaDecoderLayerAuto_2', 'LlamaDecoderLayerAuto_3']]
+Thu Mar 07 14:18:53-INFO: start op: [fused_rms_norm]: [['create_parameter_4.w_0', 'tmp_27']] [['_generated_var_9', '_generated_var_8']]
+Thu Mar 07 14:18:53-INFO: end op: [elementwise_add]: [['tmp_52', 'linear_27.tmp_0']] [['tmp_53']]
+Thu Mar 07 14:18:53-INFO: stage=[0], chunk_id=[1], layer_name=[['LlamaDecoderLayerAuto_4', 'LlamaDecoderLayerAuto_5']]
+Thu Mar 07 14:18:53-INFO: start op: [assign]: [['expand_0.tmp_0']] [['reshard_api.tmp_4']]
+Thu Mar 07 14:18:53-INFO: end op: [elementwise_add]: [['tmp_78', 'linear_41.tmp_0']] [['tmp_79']]
+Thu Mar 07 14:18:53-INFO: stage=[1], chunk_id=[1], layer_name=[['LlamaDecoderLayerAuto_6', 'LlamaDecoderLayerAuto_7']]
+Thu Mar 07 14:18:53-INFO: start op: [fused_rms_norm]: [['create_parameter_12.w_0', 'tmp_79']] [['_generated_var_25', '_generated_var_24']]
+Thu Mar 07 14:18:53-INFO: end op: [reduce_mean]: [['tmp_109']] [['mean_0.tmp_0']]
+[2024-03-07 14:18:56,859] [    INFO] process_group.py:150 - group_id: 0, ranks: [0, 1, 2, 3, 4, 5, 6, 7], nranks: 8, trainer_endpoints: 10.127.24.147:42953
+[2024-03-07 14:18:57,616] [    INFO] process_group.py:150 - group_id: 35, ranks: [0, 4], nranks: 2, trainer_endpoints: 10.127.24.147:42953
+[2024-03-07 14:18:57,693] [    INFO] process_group.py:150 - group_id: 36, ranks: [4, 5], nranks: 2, trainer_endpoints: 10.127.24.147:42953
+[2024-03-07 14:18:57,983] [    INFO] process_group.py:150 - group_id: 40, ranks: [0, 1, 4, 5], nranks: 4, trainer_endpoints: 10.127.24.147:42953
+[2024-03-07 14:18:58,309] [    INFO] process_group.py:150 - group_id: 43, ranks: [4, 6], nranks: 2, trainer_endpoints: 10.127.24.147:42953
+/usr/local/lib/python3.8/dist-packages/paddle/distributed/auto_parallel/static/process_group.py:255: VisibleDeprecationWarning: [93m
+Warning:
+API "paddle.device.cuda.synchronize" is deprecated since 2.5.0, and will be removed in future versions. Please use "paddle.device.synchronize" instead.
+    Reason: synchronize in paddle.device.cuda will be removed in future [0m
+  paddle.device.cuda.synchronize()
+[2024-03-07 14:18:58,755] [    INFO] process_group.py:150 - group_id: 49, ranks: [6, 4], nranks: 2, trainer_endpoints: 10.127.24.147:42953
+I0307 14:18:59.809160 26498 program_interpreter.cc:220] New Executor is Running.
+I0307 14:19:02.591830 26498 interpreter_util.cc:652] Standalone Executor is Used.
+I0307 14:19:03.933756 27757 conditional_block_op.cc:98] [ControlFlow][ConditionalBlock] New Executor is Running.
+[32m[2024-03-07 14:19:26,219] [    INFO][0m - 
+Training completed. 
+[0m
+[32m[2024-03-07 14:19:26,277] [    INFO][0m - Saving model checkpoint to output/llama_auto_dp2mp2pp2[0m
+[32m[2024-03-07 14:19:26,280] [    INFO][0m - tokenizer config file saved in output/llama_auto_dp2mp2pp2/tokenizer_config.json[0m
+[32m[2024-03-07 14:19:26,280] [    INFO][0m - Special tokens file saved in output/llama_auto_dp2mp2pp2/special_tokens_map.json[0m
+/usr/local/lib/python3.8/dist-packages/paddle/framework/io.py:914: UserWarning: The input state dict is empty, no need to save.
+  warnings.warn("The input state dict is empty, no need to save.")
+[32m[2024-03-07 14:19:28,848] [    INFO][0m - Model weights saved in output/llama_auto_dp2mp2pp2/model[0m
+grep: warning: GREP_OPTIONS is deprecated; please use an alias or script
+[33m[2024-03-07 14:36:25,744] [ WARNING][0m - evaluation_strategy reset to IntervalStrategy.STEPS for do_eval is True. you can also set evaluation_strategy='epoch'.[0m
+/root/zzh/codes/PaddleNLP/paddlenlp/trainer/training_args.py:887: UserWarning: `--sharding_parallel_degree` is useful only when `--sharding` is specified.
+  warnings.warn("`--sharding_parallel_degree` is useful only when `--sharding` is specified.")
+[32m[2024-03-07 14:36:25,745] [    INFO][0m - PP configs:{"enable":"True","schedule_mode":"VPP","vpp_degree":"1","vpp_seg_method":"","micro_batch_size":"1","accumulate_steps":"4","generation_batch_size":"1","enable_send_recv_overlap":"False","job_schedule_profiler_start":"-1","job_schedule_profiler_stop":"-1",}, use master_grad: False[0m
+[33m[2024-03-07 14:36:25,746] [ WARNING][0m - In pipeline model, the evaluation also shares same setting with training. We will enforce that per_device_eval_batch_size=per_device_train_batch_size * gradient_accumulation_steps.[0m
+[2024-03-07 14:36:25,746] [    INFO] distributed_strategy.py:214 - distributed strategy initialized
+======================= Modified FLAGS detected =======================
+FLAGS(name='FLAGS_cusolver_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cusolver/lib', default_value='')
+FLAGS(name='FLAGS_cudnn_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cudnn/lib', default_value='')
+FLAGS(name='FLAGS_cublas_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cublas/lib', default_value='')
+FLAGS(name='FLAGS_cusparse_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cusparse/lib', default_value='')
+FLAGS(name='FLAGS_curand_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/curand/lib', default_value='')
+FLAGS(name='FLAGS_nccl_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/nccl/lib', default_value='')
+FLAGS(name='FLAGS_selected_gpus', current_value='4', default_value='')
+FLAGS(name='FLAGS_cupti_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cuda_cupti/lib', default_value='')
+=======================================================================
+I0307 14:36:25.749089 41047 tcp_utils.cc:130] Successfully connected to 10.127.24.147:61022
+I0307 14:36:25.749400 41047 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:36:25.749416 41047 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+I0307 14:36:25.750178 41047 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:36:25.750207 41047 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+[2024-03-07 14:36:25,750] [    INFO] topology.py:371 - Total 4 pipe comm group(s) create successfully!
+W0307 14:36:25.753082 41047 gpu_resources.cc:119] Please NOTE: device: 4, GPU Compute Capability: 7.0, Driver API Version: 11.0, Runtime API Version: 11.8
+W0307 14:36:25.791033 41047 gpu_resources.cc:164] device: 4, cuDNN Version: 8.6.
+W0307 14:36:25.791078 41047 gpu_resources.cc:196] WARNING: device: 4. The installed Paddle is compiled with CUDA 11.8, but CUDA runtime version in your machine is 11.0, which may cause serious incompatible bug. Please recompile or reinstall Paddle with compatible CUDA version.
+I0307 14:36:29.739313 41047 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:36:29.739347 41047 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+[2024-03-07 14:36:29,739] [    INFO] topology.py:371 - Total 4 data comm group(s) create successfully!
+I0307 14:36:29.739931 41047 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:36:29.739943 41047 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+[2024-03-07 14:36:29,739] [    INFO] topology.py:371 - Total 4 model comm group(s) create successfully!
+[2024-03-07 14:36:29,740] [    INFO] topology.py:371 - Total 8 sharding comm group(s) create successfully!
+I0307 14:36:29.740269 41047 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:36:29.740279 41047 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+I0307 14:36:29.740309 41047 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:36:29.740314 41047 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+[2024-03-07 14:36:29,740] [    INFO] topology.py:293 - HybridParallelInfo: rank_id: 4, mp_degree: 2, sharding_degree: 1, pp_degree: 2, dp_degree: 2, sep_degree: 1, mp_group: [4, 5],  sharding_group: [4], pp_group: [4, 6], dp_group: [0, 4], sep:group: None, check/clip group: [4, 5, 6, 7]
+[32m[2024-03-07 14:36:29,741] [    INFO][0m - The default value for the training argument `--report_to` will change in v5 (from all installed integrations to none). In v5, you will need to use `--report_to all` to get the same behavior as now. You should start updating your code and make this info disappear :-).[0m
+[32m[2024-03-07 14:36:29,742] [    INFO][0m - {"auto_mode":"semi","gradient_scale":"True","gradient_scale_using_allreduce_avg":"False","use_cache":"True","return_numpy":"True","all_ranks":"False","split_data":"True","seed":"None","reinit":"False","recompute":"{'enable': False, 'checkpoints': [], 'no_recompute_segments': [], 'sr': 0, 'refined_ops_patterns': [], 'enable_tuning': False}","amp":"{'enable': False, 'dtype': 'float16', 'level': 'o1', 'init_loss_scaling': 32768.0, 'incr_every_n_steps': 1000, 'decr_every_n_nan_or_inf': 2, 'incr_ratio': 2.0, 'decr_ratio': 0.8, 'use_dynamic_loss_scaling': True, 'custom_white_list': [], 'custom_black_list': [], 'custom_black_varnames': [], 'use_fp16_guard': False, 'use_bf16_guard': False, 'use_master_grad': False}","sharding":"{'enable': False, 'stage': 1, 'degree': 8, 'enable_overlap': False, 'param_comm_stream_num': 1, 'grad_comm_stream_num': 1, 'param_bucket_size_numel': 1, 'grad_bucket_size_numel': 1, 'enable_hierarchical_comm': False, 'partition_algor': 'greedy_even', 'enable_tuning': False, 'tuning_range': []}","gradient_merge":"{'enable': False, 'k_steps': 1, 'avg': True, 'dp_gradient_sync_after_accumulate': False}","pipeline":"{'enable': True, 'schedule_mode': 'VPP', 'vpp_degree': 1, 'vpp_seg_method': '', 'micro_batch_size': 1, 'accumulate_steps': 4, 'generation_batch_size': 1, 'enable_send_recv_overlap': False, 'job_schedule_profiler_start': -1, 'job_schedule_profiler_stop': -1}","qat":"{'enable': False, 'channel_wise_abs_max': True, 'weight_bits': 8, 'activation_bits': 8, 'not_quant_pattern': ['skip_quant'], 'algo': None, 'onnx_format': True}","tuning":"{'enable': False, 'profile_start_step': 1, 'profile_end_step': 1, 'run_after_tuning': True, 'debug': False}","dataset":"{'enable': False, 'num_shards': 1}","fused_passes":"{'enable': False, 'fused_passes_list': []}","fused_linear_promotion":"{'enable': False}","dp_optimization":"{'enable': False, 'fuse_all_reduce_ops': True, 'fuse_grad_size_in_MB': 32, 'overlap_comm_cacl': True}","mp_optimization":"{'allreduce_matmul_grad_overlapping': False}","sp_optimization":"{'enable': False}",}[0m
+[32m[2024-03-07 14:36:29,743] [    INFO][0m - The global seed is set to 46, local seed is set to 54 and random seed is set to 42.[0m
+======================= Modified FLAGS detected =======================
+FLAGS(name='FLAGS_cusolver_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cusolver/lib', default_value='')
+FLAGS(name='FLAGS_cudnn_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cudnn/lib', default_value='')
+FLAGS(name='FLAGS_cublas_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cublas/lib', default_value='')
+FLAGS(name='FLAGS_cusparse_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cusparse/lib', default_value='')
+FLAGS(name='FLAGS_curand_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/curand/lib', default_value='')
+FLAGS(name='FLAGS_nccl_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/nccl/lib', default_value='')
+FLAGS(name='FLAGS_selected_gpus', current_value='4', default_value='')
+FLAGS(name='FLAGS_cupti_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cuda_cupti/lib', default_value='')
+=======================================================================
+[35m[2024-03-07 14:36:29,744] [   DEBUG][0m - ============================================================[0m
+[35m[2024-03-07 14:36:29,744] [   DEBUG][0m -      Model Configuration Arguments      [0m
+[35m[2024-03-07 14:36:29,745] [   DEBUG][0m - paddle commit id              : ce649b1d58ba86493d9cd1f3ae11764e95806498[0m
+[35m[2024-03-07 14:36:29,745] [   DEBUG][0m - paddlenlp commit id           : e3cb5d239b91a370a2a91f113ab22052d5711748.dirty[0m
+[35m[2024-03-07 14:36:29,745] [   DEBUG][0m - config_name                   : None[0m
+[35m[2024-03-07 14:36:29,745] [   DEBUG][0m - continue_training             : False[0m
+[35m[2024-03-07 14:36:29,745] [   DEBUG][0m - fuse_attention_ffn            : False[0m
+[35m[2024-03-07 14:36:29,745] [   DEBUG][0m - fuse_attention_qkv            : False[0m
+[35m[2024-03-07 14:36:29,745] [   DEBUG][0m - fuse_sequence_parallel_allreduce: False[0m
+[35m[2024-03-07 14:36:29,745] [   DEBUG][0m - hidden_size                   : None[0m
+[35m[2024-03-07 14:36:29,745] [   DEBUG][0m - intermediate_size             : None[0m
+[35m[2024-03-07 14:36:29,745] [   DEBUG][0m - model_name_or_path            : facebook/llama-7b[0m
+[35m[2024-03-07 14:36:29,746] [   DEBUG][0m - model_type                    : llama[0m
+[35m[2024-03-07 14:36:29,746] [   DEBUG][0m - no_recompute_layers           : None[0m
+[35m[2024-03-07 14:36:29,746] [   DEBUG][0m - num_attention_heads           : None[0m
+[35m[2024-03-07 14:36:29,746] [   DEBUG][0m - num_hidden_layers             : 8[0m
+[35m[2024-03-07 14:36:29,746] [   DEBUG][0m - pp_recompute_interval         : 1[0m
+[35m[2024-03-07 14:36:29,746] [   DEBUG][0m - recompute_granularity         : full[0m
+[35m[2024-03-07 14:36:29,746] [   DEBUG][0m - recompute_use_reentrant       : False[0m
+[35m[2024-03-07 14:36:29,746] [   DEBUG][0m - sequence_parallel             : False[0m
+[35m[2024-03-07 14:36:29,746] [   DEBUG][0m - tokenizer_name_or_path        : facebook/llama-7b[0m
+[35m[2024-03-07 14:36:29,746] [   DEBUG][0m - use_flash_attention           : False[0m
+[35m[2024-03-07 14:36:29,746] [   DEBUG][0m - use_fused_rms_norm            : True[0m
+[35m[2024-03-07 14:36:29,746] [   DEBUG][0m - use_fused_rope                : False[0m
+[35m[2024-03-07 14:36:29,747] [   DEBUG][0m - virtual_pp_degree             : 2[0m
+[35m[2024-03-07 14:36:29,747] [   DEBUG][0m - vocab_size                    : None[0m
+[35m[2024-03-07 14:36:29,747] [   DEBUG][0m - [0m
+[35m[2024-03-07 14:36:29,747] [   DEBUG][0m - ============================================================[0m
+[35m[2024-03-07 14:36:29,747] [   DEBUG][0m -       Data Configuration Arguments      [0m
+[35m[2024-03-07 14:36:29,747] [   DEBUG][0m - paddle commit id              : ce649b1d58ba86493d9cd1f3ae11764e95806498[0m
+[35m[2024-03-07 14:36:29,747] [   DEBUG][0m - paddlenlp commit id           : e3cb5d239b91a370a2a91f113ab22052d5711748.dirty[0m
+[35m[2024-03-07 14:36:29,747] [   DEBUG][0m - data_cache                    : None[0m
+[35m[2024-03-07 14:36:29,747] [   DEBUG][0m - data_impl                     : mmap[0m
+[35m[2024-03-07 14:36:29,747] [   DEBUG][0m - input_dir                     : ./data[0m
+[35m[2024-03-07 14:36:29,747] [   DEBUG][0m - max_seq_length                : 2048[0m
+[35m[2024-03-07 14:36:29,748] [   DEBUG][0m - share_folder                  : False[0m
+[35m[2024-03-07 14:36:29,748] [   DEBUG][0m - skip_warmup                   : True[0m
+[35m[2024-03-07 14:36:29,748] [   DEBUG][0m - split                         : 949,50,1[0m
+[35m[2024-03-07 14:36:29,748] [   DEBUG][0m - [0m
+[33m[2024-03-07 14:36:29,748] [ WARNING][0m - Process rank: 4, device: gpu, world_size: 8, distributed training: True, 16-bits training: False[0m
+[32m[2024-03-07 14:36:29,748] [    INFO][0m - We are using (<class 'paddlenlp.transformers.llama.tokenizer.LlamaTokenizer'>, False) to load 'facebook/llama-7b'.[0m
+[32m[2024-03-07 14:36:29,749] [    INFO][0m - Already cached /root/.paddlenlp/models/facebook/llama-7b/sentencepiece.bpe.model[0m
+[32m[2024-03-07 14:36:29,766] [    INFO][0m - tokenizer config file saved in /root/.paddlenlp/models/facebook/llama-7b/tokenizer_config.json[0m
+[32m[2024-03-07 14:36:29,767] [    INFO][0m - Special tokens file saved in /root/.paddlenlp/models/facebook/llama-7b/special_tokens_map.json[0m
+[32m[2024-03-07 14:36:29,816] [    INFO][0m - Found /root/.paddlenlp/models/facebook/llama-7b/config.json[0m
+[32m[2024-03-07 14:36:29,818] [    INFO][0m - Loading configuration file /root/.paddlenlp/models/facebook/llama-7b/config.json[0m
+[32m[2024-03-07 14:36:29,818] [    INFO][0m - Reset vocab size to 32000 for batter amp peformance.[0m
+Final pre-training config: LlamaConfig {
+  "alibi": false,
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "bos_token_id": 1,
+  "eos_token_id": 2,
+  "fuse_attention_ffn": false,
+  "fuse_attention_qkv": false,
+  "fuse_sequence_parallel_allreduce": false,
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 11008,
+  "max_position_embeddings": 2048,
+  "model_type": "llama",
+  "no_recompute_layers": null,
+  "num_attention_heads": 32,
+  "num_hidden_layers": 8,
+  "num_key_value_heads": 32,
+  "pad_token_id": 0,
+  "paddlenlp_version": null,
+  "pp_recompute_interval": 1,
+  "recompute_granularity": "full",
+  "rms_norm_eps": 1e-06,
+  "rope_scaling_factor": 1.0,
+  "rope_scaling_type": null,
+  "seq_length": 2048,
+  "sequence_parallel": false,
+  "tensor_parallel_degree": 2,
+  "tensor_parallel_output": true,
+  "tie_word_embeddings": false,
+  "use_fused_rms_norm": true,
+  "use_fused_rope": false,
+  "use_recompute": false,
+  "virtual_pp_degree": 2,
+  "vocab_size": 32000
+}
+
+Using old dataet (.npy & .npz)
+searching for causual dataset, build_indices=False, share_folder False, check_rank_flag False
+build success
+searching for causual dataset, build_indices=False, share_folder False, check_rank_flag False
+build success
+searching for causual dataset, build_indices=False, share_folder False, check_rank_flag False
+build success
+[32m[2024-03-07 14:36:31,900] [    INFO][0m - Sample data for train mode.[0m
+[32m[2024-03-07 14:36:31,918] [    INFO][0m - . How?? Well thats the magic!! Its a bit complicated to explain here. Get the book and read Chapter 9. But it works! Check this out:Amazing isn't it? And the even more amazing thing is that it is not specific to factorial. See thisWoohoo!! On a roll now..You can take any recursive function, and rewrite it in the above style and the Y combinator will make a recursive version of it. How cool is that?</s> Perception.
+
+Computational models of facial attractiveness judgments.
+
+Strikingly, both models produced estimates of facial attractiveness that were indistinguishable from human ratings.
+
+The image factors that the model discovered correspond to two of the main contemporary hypotheses of averageness judgments: facial attractiveness and sexual dimorphism.
+
+This provides novel evidence for the importance of averageness and sexual dimorphism, but not symmetry, in human judgments of facial attractiveness.
+
+Very related: Computer taught to recognize female attractiveness 2008;37(1):126-42.Related ArticlesBronstad PM, Langlois JH, Russell R.We designed two computational models to replicate human facial attractiveness ratings. The primary model used partial least squares (PLS) to identify image factors associated with facial attractiveness from facial images and attractiveness ratings of those images. For comparison we also made a model similar to previous models of facial attractiveness, in that it used manually derived measurements between features as inputs, though we took the additional step of dimensionality reduction via principal component analysis (PCA) and weighting of PCA dimensions via a perceptron.Because PLS extracts a small number of image factors from the facial images that covary with attractiveness ratings of the images, it is possible to determine the information used by the model.In contrast, facial symmetry was not important to the model, and an explicit feature-based measurement of symmetry was not correlated with human judgments of facial attractiveness.</s> The news comes after the Telegraph launched a campaign calling for a fair deal for motorists. This follows a 50 per cent increase in the amount of car-related tax since Labour came to power.</s> Mengenal Gaya Bermain Poker Online Pada Pemain Profesional
+
+Mengenal Gaya Bermain Poker Online Pada Pemain Profesional – Ada beberapa hal yang harus anda ketahui ketika anda bermain poker online ini. Salah satunya adalah mengenal gaya bermain poker online pada setiap pemain yang melakukan taruhan ini. Gaya bermain ini sering dikatakan sebagai playing styles, dimana terdapat banyak sekali gaya yang harus anda ketahui. Berikut […]</s>U.S. troops working the streets of the capital fear one Iraqi weapon more than others -- a copper-plated explosive that can penetrate armor and has proved devastating to Humvees and even capable of severely damaging tanks.
+
+The power of what the military calls an EFP -- for explosively formed penetrator, or projectile -- to spray molten metal balls that punch through the armor on vehicles has some American troops rethinking their tactics. They are asking whether the U.S. should give up its reliance on making constant improvements to vehicle defenses.
+
+Instead, these troops think, it is time to leave the armor behind -- and get out and walk.
+
+“In our area, the biggest threat for us is EFPs. When you are in the vehicles, you are a big target,” said Army Staff Sgt. Cavin Moskwa, 33, of Hawaii, who patrols Baghdad’s Zafraniya neighborhood with the Bravo Battery of the 2nd Battalion, 17th Field Artillery Regiment. “But when you are dismounted... you are a lot safer.”
+
+Advertisement
+
+In the last three days, 15 U.S. troops have been killed in Iraq, nine of them in two powerful roadside bomb blasts. The military does not publicly identify the kind of weapon used in improvised explosive attacks, but the deadly nature of the blasts Wednesday and Thursday suggested that EFPs may have been used.
+
+The deaths brought to 3,545 the total number of U.S. troops killed in the Iraq theater since the March 2003 American-led invasion, the U.S. military said. Hundreds of these troops have been killed by EFPs and other kinds of improvised explosive devices, or IEDs. The Pentagon’s most recent Iraq status report said EFP attacks were at an all-time high.
+
+Foot patrols, of course, are not a fail-safe method. On city streets, snipers remain a threat. And bombs can still kill dismounted troops. But when blasts occur in the middle of a foot patrol, the number of casualties are generally lower because the troops are more spread out.
+
+Before a foot patrol last week through a neighborhood next to Baghdad’s Sadr City district, a private with Alpha Company of the Army’s 1st Battalion, 8th Cavalry Regiment, began complaining about having to walk. But EFPs have claimed the lives of several soldiers in the unit, and Sgt. Leland Kidd, 28, of Gonzales, Texas, said the private should be thankful they were on foot.
+
+Advertisement
+
+“When I walk on my feet, I don’t have to worry about being blown up,” Kidd told the private. “In the vehicle, I have to.”
+
+Top commanders have been encouraging more such units in Baghdad to take just that tack.
+
+A counterinsurgency guidance memo released last week by Army Lt. Gen Raymond T. Odierno, the commander of day-to-day military operations, urges Iraqi and American troops to “get out and walk.”
+
+The memo argues that although Humvees offer protection, they also make units predictable and “insulate us from the Iraqi people we intend to secure.”
+
+Advertisement
+
+The original draft of the memo, written by counterinsurgency expert David Kilcullen, goes further. It notes that EFP attacks on Humvees damage them heavily. “So we gain little in safety, but sacrifice much in effectiveness,” the draft reads.
+
+One reason for the increased number of troops victimized by roadside bombs is that there are more forces in Iraq now, Marine Gen. Peter Pace, chairman of the Joint Chiefs of Staff, said at a Pentagon news conference Thursday. This month, the final additional American combat units arrived in Baghdad, as part of a counterinsurgency strategy announced by President Bush in January that has increased the U.S. military presence in Iraq by 28,500 troops.
+
+“As we’re taking the fight to the enemy with the additional troops, we can expect that there’s going to be tough fighting ahead,” Pace said. “So it is an expectation that this surge is going to result in more contact and therefore more casualties.”
+
+But another reason for the rising death toll is the ability of Iraq’s militants to adapt to new U.S. military tactics.
+
+Advertisement
+
+During the 2003 invasion, most American Humvees were outfitted with flimsy canvas doors. When the first improvised explosive devices made from artillery shells appeared, the military scrambled to put stronger armor on the vehicles. Since then, the military has repeatedly upgraded Humvee armor as militants have made bigger and bigger bombs.
+
+But the small and easily hidden EFPs, which often are powered by C-4 plastic explosives, are not just a more powerful IED. Military personnel experienced with the projectiles say that what makes the weapons so deadly is that they use the Americans’ own armor against them. As the hot copper slug melts through the armor of a Humvee, it transforms the protective plating into shrapnel that sprays into the passenger cabin, they say.
+
+“We joked about going back to canvas doors. That way, unless it hits you directly, you are OK,” said Army Sgt. William Bowman, 31, of Fort Myers, Fla.
+
+But to Moskwa, the staff sergeant from Hawaii, the question of armor is no joke. Moskwa, who served as an Army recruiter in Pasadena before deploying to Iraq, thinks armor on vehicles and body armor on troops are too restrictive, hampering a service member’s ability to move quickly and agilely.
+
+Advertisement
+
+“I would rather go out without any armor or gear,” he said. “If an EFP hits the vehicle, you are dead anyway no[0m
+[32m[2024-03-07 14:36:31,918] [    INFO][0m - Sample data for valid mode.[0m
+[32m[2024-03-07 14:36:31,934] [    INFO][0m - intolerant of large, polluting industrial plants on their doorsteps. Second, American power companies are fearful that they will soon have to pay for one particular pollutant, carbon dioxide, as is starting to happen in other parts of the rich world. Having invested heavily in gas-fired stations, only to find themselves locked into an increasingly expensive fuel, they do not want to make another mistake.
+
+That has opened up a capacity gap and an opportunity for wind and sunlight. The future price of these resources—zero—is known. That certainty has economic value as a hedge, even if the capital cost of wind and solar power stations is, at the moment, higher than that of coal-fired ones.
+
+The reasons for the boom, then, are tangled, and the way they are perceived may change. Global warming, a long-range phenomenon, may not be uppermost in people's minds during an economic downturn. High fuel prices may fall as new sources of supply are exploited to fill rising demand from Asia. Security of supply may improve if hostile governments are replaced by friendly ones and sources become more diversified. But none of the reasons is likely to go away entirely.
+
+Global warming certainly will not. “Peak oil”, if oil means the traditional sort that comes cheaply out of holes in the ground, probably will arrive soon. There is oil aplenty of other sorts (tar sands, liquefied coal and so on), so the stuff is unlikely to run out for a long time yet. But it will get more expensive to produce, putting a floor on the price that is way above today's. And political risk will always be there—particularly for oil, which is so often associated with bad government for the simple reason that its very presence causes bad government in states that do not have strong institutions to curb their politicians.
+
+A prize beyond the dreams of avarice
+
+The market for energy is huge. At present, the world's population consumes about 15 terawatts of power. (A terawatt is 1,000 gigawatts, and a gigawatt is the capacity of the largest sort of coal-fired power station.) That translates into a business worth $6 trillion a year—about a tenth of the world's economic output—according to John Doerr, a venture capitalist who is heavily involved in the industry. And by 2050, power consumption is likely to have risen to 30 terawatts.
+
+Scale is one of the important differences between the coming energy boom, if it materialises, and its recent predecessors—particularly those that relied on information technology, a market measured in mere hundreds of billions. Another difference is that new information technologies tend to be disruptive, forcing the replacement of existing equipment, whereas, say, building wind farms does not force the closure of coal-fired power stations.
+
+For both of these reasons, any transition from an economy based on fossil fuels to one based on renewable, alternative, green energy—call it what you will—is likely to be slow, as similar changes have been in the past (see chart 1). On the other hand, the scale of the market provides opportunities for alternatives to prove themselves at the margin and then move into the mainstream, as is happening with wind power at the moment. And some energy technologies do have the potential to be disruptive. Plug-in cars, for example, could be fuelled with electricity at a price equivalent to 25 cents a litre of petrol. That could shake up the oil, carmaking and electricity industries all in one go.
+
+The innovation lull of the past few decades also provides opportunities for technological leapfrogging. Indeed, it may be that the field of energy gives the not-quite-booms in biotechnology and nanotechnology the industrial applications they need to grow really big, and that the three aspiring booms will thus merge into one.
+
+The possibility of thus recapturing the good times of their youth has brought many well-known members of the “technorati” out of their homes in places like Woodside, California. Energy has become supercool. Elon Musk, who co-founded PayPal, has developed a battery-powered sports car. Larry Page and Sergey Brin, the founders of Google, have started an outfit called Google.org that is searching for a way to make renewable energy truly cheaper than coal (or RE
+
+Vinod Khosla, one of the founders of Sun Microsystems, is turning his considerable skills as a venture capitalist towards renewable energy, as are Robert Metcalfe, who invented the ethernet system used to connect computers together in local networks, and Mr Doerr, who works at Kleiner Perkins Caufield & Byers, one of Silicon Valley's best-known venture-capital firms. Sir Richard Branson, too, is getting in on the act with his Virgin Green Fund.
+
+This renewed interest in energy is bringing forth a raft of ideas, some bright, some batty, that is indeed reminiscent of the dotcom boom. As happened in that boom, most of these ideas will come to naught. But there could just be a PayPal or a Google or a Sun among them.
+
+More traditional companies are also taking an interest. General Electric (GE), a large American engineering firm, already has a thriving wind-turbine business and is gearing up its solar-energy business. The energy researchers at its laboratories in Schenectady, New York, enjoy much of the intellectual freedom associated with start-up firms, combined with a secure supply of money.
+
+Meanwhile, BP and Shell, two of the world's biggest oil companies, are sponsoring both academic researchers and new, small firms with bright ideas, as is DuPont, one of the biggest chemical companies. Not everyone has joined in. Exxon Mobil, the world's largest oil company not in government hands, is conspicuously absent. But in many boardrooms renewables are no longer seen as just a way of keeping environmentalists off companies' backs.
+
+Some people complain that many existing forms of renewable energy rely on subsidies or other forms of special treatment for their viability. On the surface, that is true. Look beneath, though, and the whole energy sector is riddled with subsidies, both explicit and hidden, and costs that are not properly accounted for. Drawing on the work of people like Boyden Gray, a former White House counsel, Mr Woolsey estimates that American oil companies receive preferential treatment from their government worth more than $250 billion a year. And the Intergovernmental Panel on Climate Change (IPCC), a United Nations-appointed group of scientific experts, reckons that fossil fuels should carry a tax of $20-50 for every tonne of carbon dioxide they generate in order to pay for the environmental effects of burning them (hence the fears of the power-generators).
+
+So the subsidies and mandates offered to renewable sources of power such as wind turbines often just level the playing field. It is true that some subsidies amount to unwarranted market-rigging: examples include those handed by cloudy Germany to its solar-power industry and by America to its maize-based ethanol farmers when Brazilian sugar-based ethanol is far cheaper. Others, though, such as a requirement that a certain proportion of electricity be derived from non-fossil-fuel sources, make no attempt to pick particular technological winners. They merely act to stimulate innovation by guaranteeing a market to things that actually work.
+
+If the world were rational, all of these measures would be swept away and replaced by a proper tax on carbon—as is starting to happen in Europe, where the price arrived at by the cap-and-trade system being introduced is close to the IPCC's recommendation. If that occurred, wind-based electricity would already be competitive with fossil fuels and others would be coming close. Failing that, special treatment for alternatives is probably the least bad option—though such measures need to be crafted in ways that favour neither incumbents nor particular ways of doing things, and need to be withdrawn when they are no longer necessary.
+
+The poor world turns greener too
+
+That, at least, is the view from the rich world. But poorer, rapidly developing countries are also taking more of an interest in renewable energy sources, despite assertions to the contrary by some Western politicians and businessmen. It is true that China is building coal-fired power stations at a blazing rate. But it also has a large wind-generation capacity, which is expected to grow by two-thirds this year, and is the world's second-largest manufacturer of solar panels—not to mention having the largest number of solar-heated rooftop hot-water systems in its buildings.
+
+Brazil, meanwhile, has the world's second-largest (just behind America) and most econom[0m
+[32m[2024-03-07 14:36:31,936] [    INFO][0m - The global seed is set to 46, local seed is set to 54 and random seed is set to 42.[0m
+[32m[2024-03-07 14:36:31,937] [    INFO][0m - Successfully to apply @to_static to the whole model.[0m
+[32m[2024-03-07 14:36:32,064] [    INFO][0m - max_steps is given, it will override any value given in num_train_epochs[0m
+[35m[2024-03-07 14:36:32,065] [   DEBUG][0m - ============================================================[0m
+[35m[2024-03-07 14:36:32,065] [   DEBUG][0m -     Training Configuration Arguments    [0m
+[35m[2024-03-07 14:36:32,065] [   DEBUG][0m - paddle commit id              : ce649b1d58ba86493d9cd1f3ae11764e95806498[0m
+[35m[2024-03-07 14:36:32,065] [   DEBUG][0m - paddlenlp commit id           : e3cb5d239b91a370a2a91f113ab22052d5711748.dirty[0m
+[35m[2024-03-07 14:36:32,065] [   DEBUG][0m - _no_sync_in_gradient_accumulation: True[0m
+[35m[2024-03-07 14:36:32,065] [   DEBUG][0m - adam_beta1                    : 0.9[0m
+[35m[2024-03-07 14:36:32,065] [   DEBUG][0m - adam_beta2                    : 0.999[0m
+[35m[2024-03-07 14:36:32,065] [   DEBUG][0m - adam_epsilon                  : 1e-08[0m
+[35m[2024-03-07 14:36:32,065] [   DEBUG][0m - amp_custom_black_list         : None[0m
+[35m[2024-03-07 14:36:32,066] [   DEBUG][0m - amp_custom_white_list         : None[0m
+[35m[2024-03-07 14:36:32,066] [   DEBUG][0m - amp_master_grad               : False[0m
+[35m[2024-03-07 14:36:32,066] [   DEBUG][0m - autotuner_benchmark           : False[0m
+[35m[2024-03-07 14:36:32,066] [   DEBUG][0m - bf16                          : False[0m
+[35m[2024-03-07 14:36:32,066] [   DEBUG][0m - bf16_full_eval                : False[0m
+[35m[2024-03-07 14:36:32,066] [   DEBUG][0m - current_device                : gpu:4[0m
+[35m[2024-03-07 14:36:32,066] [   DEBUG][0m - data_parallel_config          : [0m
+[35m[2024-03-07 14:36:32,066] [   DEBUG][0m - data_parallel_degree          : 2[0m
+[35m[2024-03-07 14:36:32,066] [   DEBUG][0m - data_parallel_rank            : 1[0m
+[35m[2024-03-07 14:36:32,067] [   DEBUG][0m - dataloader_drop_last          : False[0m
+[35m[2024-03-07 14:36:32,067] [   DEBUG][0m - dataloader_num_workers        : 1[0m
+[35m[2024-03-07 14:36:32,067] [   DEBUG][0m - dataset_rank                  : 1[0m
+[35m[2024-03-07 14:36:32,067] [   DEBUG][0m - dataset_world_size            : 2[0m
+[35m[2024-03-07 14:36:32,067] [   DEBUG][0m - decay_steps                   : 10[0m
+[35m[2024-03-07 14:36:32,067] [   DEBUG][0m - device                        : gpu[0m
+[35m[2024-03-07 14:36:32,067] [   DEBUG][0m - disable_tqdm                  : True[0m
+[35m[2024-03-07 14:36:32,067] [   DEBUG][0m - distributed_dataloader        : False[0m
+[35m[2024-03-07 14:36:32,067] [   DEBUG][0m - do_eval                       : True[0m
+[35m[2024-03-07 14:36:32,067] [   DEBUG][0m - do_export                     : False[0m
+[35m[2024-03-07 14:36:32,067] [   DEBUG][0m - do_predict                    : False[0m
+[35m[2024-03-07 14:36:32,068] [   DEBUG][0m - do_train                      : True[0m
+[35m[2024-03-07 14:36:32,068] [   DEBUG][0m - enable_auto_parallel          : True[0m
+[35m[2024-03-07 14:36:32,068] [   DEBUG][0m - enable_linear_fused_grad_add  : False[0m
+[35m[2024-03-07 14:36:32,068] [   DEBUG][0m - eval_accumulation_steps       : None[0m
+[35m[2024-03-07 14:36:32,068] [   DEBUG][0m - eval_batch_size               : 4[0m
+[35m[2024-03-07 14:36:32,068] [   DEBUG][0m - eval_iters                    : 10[0m
+[35m[2024-03-07 14:36:32,068] [   DEBUG][0m - eval_steps                    : 1000000[0m
+[35m[2024-03-07 14:36:32,068] [   DEBUG][0m - evaluation_strategy           : IntervalStrategy.STEPS[0m
+[35m[2024-03-07 14:36:32,068] [   DEBUG][0m - flatten_param_grads           : False[0m
+[35m[2024-03-07 14:36:32,068] [   DEBUG][0m - force_reshard_pp              : False[0m
+[35m[2024-03-07 14:36:32,068] [   DEBUG][0m - fp16                          : False[0m
+[35m[2024-03-07 14:36:32,069] [   DEBUG][0m - fp16_full_eval                : False[0m
+[35m[2024-03-07 14:36:32,069] [   DEBUG][0m - fp16_opt_level                : O2[0m
+[35m[2024-03-07 14:36:32,069] [   DEBUG][0m - fused_linear_param_grad_add   : False[0m
+[35m[2024-03-07 14:36:32,069] [   DEBUG][0m - gradient_accumulation_steps   : 4[0m
+[35m[2024-03-07 14:36:32,069] [   DEBUG][0m - greater_is_better             : None[0m
+[35m[2024-03-07 14:36:32,069] [   DEBUG][0m - hybrid_parallel_topo_order    : None[0m
+[35m[2024-03-07 14:36:32,069] [   DEBUG][0m - ignore_data_skip              : False[0m
+[35m[2024-03-07 14:36:32,069] [   DEBUG][0m - ignore_load_lr_and_optim      : False[0m
+[35m[2024-03-07 14:36:32,069] [   DEBUG][0m - ignore_save_lr_and_optim      : False[0m
+[35m[2024-03-07 14:36:32,069] [   DEBUG][0m - job_schedule_profiler_end     : -1[0m
+[35m[2024-03-07 14:36:32,069] [   DEBUG][0m - job_schedule_profiler_start   : -1[0m
+[35m[2024-03-07 14:36:32,069] [   DEBUG][0m - label_names                   : None[0m
+[35m[2024-03-07 14:36:32,070] [   DEBUG][0m - lazy_data_processing          : True[0m
+[35m[2024-03-07 14:36:32,070] [   DEBUG][0m - learning_rate                 : 0.0001[0m
+[35m[2024-03-07 14:36:32,070] [   DEBUG][0m - load_best_model_at_end        : False[0m
+[35m[2024-03-07 14:36:32,070] [   DEBUG][0m - load_sharded_model            : False[0m
+[35m[2024-03-07 14:36:32,070] [   DEBUG][0m - local_process_index           : 4[0m
+[35m[2024-03-07 14:36:32,070] [   DEBUG][0m - local_rank                    : 4[0m
+[35m[2024-03-07 14:36:32,070] [   DEBUG][0m - log_level                     : -1[0m
+[35m[2024-03-07 14:36:32,070] [   DEBUG][0m - log_level_replica             : -1[0m
+[35m[2024-03-07 14:36:32,070] [   DEBUG][0m - log_on_each_node              : True[0m
+[35m[2024-03-07 14:36:32,070] [   DEBUG][0m - logging_dir                   : output/llama_auto_dp2mp2pp2/runs/Mar07_14-36-25_yq01-sys-hic-k8s-v100-box-a225-0491.yq01.baidu.com[0m
+[35m[2024-03-07 14:36:32,070] [   DEBUG][0m - logging_first_step            : False[0m
+[35m[2024-03-07 14:36:32,071] [   DEBUG][0m - logging_steps                 : 1[0m
+[35m[2024-03-07 14:36:32,071] [   DEBUG][0m - logging_strategy              : IntervalStrategy.STEPS[0m
+[35m[2024-03-07 14:36:32,071] [   DEBUG][0m - logical_process_index         : 4[0m
+[35m[2024-03-07 14:36:32,071] [   DEBUG][0m - lr_end                        : 1e-07[0m
+[35m[2024-03-07 14:36:32,071] [   DEBUG][0m - lr_scheduler_type             : SchedulerType.LINEAR[0m
+[35m[2024-03-07 14:36:32,071] [   DEBUG][0m - max_evaluate_steps            : -1[0m
+[35m[2024-03-07 14:36:32,071] [   DEBUG][0m - max_grad_norm                 : 1.0[0m
+[35m[2024-03-07 14:36:32,071] [   DEBUG][0m - max_steps                     : 10[0m
+[35m[2024-03-07 14:36:32,071] [   DEBUG][0m - metric_for_best_model         : None[0m
+[35m[2024-03-07 14:36:32,071] [   DEBUG][0m - min_learning_rate             : 1e-05[0m
+[35m[2024-03-07 14:36:32,072] [   DEBUG][0m - minimum_eval_times            : None[0m
+[35m[2024-03-07 14:36:32,072] [   DEBUG][0m - no_cuda                       : False[0m
+[35m[2024-03-07 14:36:32,072] [   DEBUG][0m - num_cycles                    : 0.5[0m
+[35m[2024-03-07 14:36:32,072] [   DEBUG][0m - num_train_epochs              : 3.0[0m
+[35m[2024-03-07 14:36:32,072] [   DEBUG][0m - optim                         : OptimizerNames.ADAMW[0m
+[35m[2024-03-07 14:36:32,072] [   DEBUG][0m - optimizer_name_suffix         : None[0m
+[35m[2024-03-07 14:36:32,072] [   DEBUG][0m - output_dir                    : output/llama_auto_dp2mp2pp2[0m
+[35m[2024-03-07 14:36:32,072] [   DEBUG][0m - overwrite_output_dir          : False[0m
+[35m[2024-03-07 14:36:32,072] [   DEBUG][0m - past_index                    : -1[0m
+[35m[2024-03-07 14:36:32,072] [   DEBUG][0m - per_device_eval_batch_size    : 4[0m
+[35m[2024-03-07 14:36:32,072] [   DEBUG][0m - per_device_train_batch_size   : 1[0m
+[35m[2024-03-07 14:36:32,072] [   DEBUG][0m - pipeline_parallel_config      : [0m
+[35m[2024-03-07 14:36:32,073] [   DEBUG][0m - pipeline_parallel_degree      : 2[0m
+[35m[2024-03-07 14:36:32,073] [   DEBUG][0m - pipeline_parallel_rank        : 0[0m
+[35m[2024-03-07 14:36:32,073] [   DEBUG][0m - pipeline_schedule_mode        : VPP[0m
+[35m[2024-03-07 14:36:32,073] [   DEBUG][0m - power                         : 1.0[0m
+[35m[2024-03-07 14:36:32,073] [   DEBUG][0m - prediction_loss_only          : False[0m
+[35m[2024-03-07 14:36:32,073] [   DEBUG][0m - process_index                 : 4[0m
+[35m[2024-03-07 14:36:32,073] [   DEBUG][0m - recompute                     : False[0m
+[35m[2024-03-07 14:36:32,073] [   DEBUG][0m - refined_ops_patterns          : None[0m
+[35m[2024-03-07 14:36:32,073] [   DEBUG][0m - remove_unused_columns         : True[0m
+[35m[2024-03-07 14:36:32,073] [   DEBUG][0m - report_to                     : ['visualdl'][0m
+[35m[2024-03-07 14:36:32,073] [   DEBUG][0m - resume_from_checkpoint        : None[0m
+[35m[2024-03-07 14:36:32,074] [   DEBUG][0m - run_name                      : output/llama_auto_dp2mp2pp2[0m
+[35m[2024-03-07 14:36:32,074] [   DEBUG][0m - save_on_each_node             : False[0m
+[35m[2024-03-07 14:36:32,074] [   DEBUG][0m - save_sharded_model            : False[0m
+[35m[2024-03-07 14:36:32,074] [   DEBUG][0m - save_steps                    : 5000000[0m
+[35m[2024-03-07 14:36:32,074] [   DEBUG][0m - save_strategy                 : IntervalStrategy.STEPS[0m
+[35m[2024-03-07 14:36:32,074] [   DEBUG][0m - save_total_limit              : None[0m
+[35m[2024-03-07 14:36:32,074] [   DEBUG][0m - scale_loss                    : 1024.0[0m
+[35m[2024-03-07 14:36:32,074] [   DEBUG][0m - seed                          : 42[0m
+[35m[2024-03-07 14:36:32,074] [   DEBUG][0m - sep_parallel_degree           : 1[0m
+[35m[2024-03-07 14:36:32,074] [   DEBUG][0m - sharding                      : [][0m
+[35m[2024-03-07 14:36:32,074] [   DEBUG][0m - sharding_degree               : -1[0m
+[35m[2024-03-07 14:36:32,074] [   DEBUG][0m - sharding_parallel_config      : [0m
+[35m[2024-03-07 14:36:32,075] [   DEBUG][0m - sharding_parallel_degree      : 1[0m
+[35m[2024-03-07 14:36:32,075] [   DEBUG][0m - sharding_parallel_rank        : 0[0m
+[35m[2024-03-07 14:36:32,075] [   DEBUG][0m - should_load_dataset           : True[0m
+[35m[2024-03-07 14:36:32,075] [   DEBUG][0m - should_load_sharding_stage1_model: False[0m
+[35m[2024-03-07 14:36:32,075] [   DEBUG][0m - should_log                    : True[0m
+[35m[2024-03-07 14:36:32,075] [   DEBUG][0m - should_save                   : True[0m
+[35m[2024-03-07 14:36:32,075] [   DEBUG][0m - should_save_model_state       : True[0m
+[35m[2024-03-07 14:36:32,075] [   DEBUG][0m - should_save_sharding_stage1_model: False[0m
+[35m[2024-03-07 14:36:32,075] [   DEBUG][0m - skip_memory_metrics           : True[0m
+[35m[2024-03-07 14:36:32,075] [   DEBUG][0m - skip_profile_timer            : True[0m
+[35m[2024-03-07 14:36:32,075] [   DEBUG][0m - sr                            : 0[0m
+[35m[2024-03-07 14:36:32,076] [   DEBUG][0m - strategy                      : {"auto_mode":"semi","gradient_scale":"True","gradient_scale_using_allreduce_avg":"False","use_cache":"True","return_numpy":"True","all_ranks":"False","split_data":"True","seed":"None","reinit":"False","recompute":"{'enable': False, 'checkpoints': [], 'no_recompute_segments': [], 'sr': 0, 'refined_ops_patterns': [], 'enable_tuning': False}","amp":"{'enable': False, 'dtype': 'float16', 'level': 'o1', 'init_loss_scaling': 32768.0, 'incr_every_n_steps': 1000, 'decr_every_n_nan_or_inf': 2, 'incr_ratio': 2.0, 'decr_ratio': 0.8, 'use_dynamic_loss_scaling': True, 'custom_white_list': [], 'custom_black_list': [], 'custom_black_varnames': [], 'use_fp16_guard': False, 'use_bf16_guard': False, 'use_master_grad': False}","sharding":"{'enable': False, 'stage': 1, 'degree': 8, 'enable_overlap': False, 'param_comm_stream_num': 1, 'grad_comm_stream_num': 1, 'param_bucket_size_numel': 1, 'grad_bucket_size_numel': 1, 'enable_hierarchical_comm': False, 'partition_algor': 'greedy_even', 'enable_tuning': False, 'tuning_range': []}","gradient_merge":"{'enable': False, 'k_steps': 1, 'avg': True, 'dp_gradient_sync_after_accumulate': False}","pipeline":"{'enable': True, 'schedule_mode': 'VPP', 'vpp_degree': 2, 'vpp_seg_method': 'LlamaDecoderLayerAuto', 'micro_batch_size': 1, 'accumulate_steps': 4, 'generation_batch_size': 1, 'enable_send_recv_overlap': False, 'job_schedule_profiler_start': -1, 'job_schedule_profiler_stop': -1}","qat":"{'enable': False, 'channel_wise_abs_max': True, 'weight_bits': 8, 'activation_bits': 8, 'not_quant_pattern': ['skip_quant'], 'algo': None, 'onnx_format': True}","tuning":"{'enable': False, 'profile_start_step': 1, 'profile_end_step': 1, 'run_after_tuning': True, 'debug': False}","dataset":"{'enable': False, 'num_shards': 1}","fused_passes":"{'enable': False, 'fused_passes_list': []}","fused_linear_promotion":"{'enable': False}","dp_optimization":"{'enable': False, 'fuse_all_reduce_ops': True, 'fuse_grad_size_in_MB': 32, 'overlap_comm_cacl': True}","mp_optimization":"{'allreduce_matmul_grad_overlapping': False}","sp_optimization":"{'enable': False}",}[0m
+[35m[2024-03-07 14:36:32,076] [   DEBUG][0m - tensor_parallel_config        : [0m
+[35m[2024-03-07 14:36:32,076] [   DEBUG][0m - tensor_parallel_degree        : 2[0m
+[35m[2024-03-07 14:36:32,076] [   DEBUG][0m - tensor_parallel_rank          : 0[0m
+[35m[2024-03-07 14:36:32,076] [   DEBUG][0m - test_iters                    : 100[0m
+[35m[2024-03-07 14:36:32,076] [   DEBUG][0m - to_static                     : True[0m
+[35m[2024-03-07 14:36:32,076] [   DEBUG][0m - train_batch_size              : 1[0m
+[35m[2024-03-07 14:36:32,076] [   DEBUG][0m - unified_checkpoint            : False[0m
+[35m[2024-03-07 14:36:32,077] [   DEBUG][0m - unified_checkpoint_config     : [0m
+[35m[2024-03-07 14:36:32,077] [   DEBUG][0m - use_hybrid_parallel           : False[0m
+[35m[2024-03-07 14:36:32,077] [   DEBUG][0m - virtual_pipeline_seg_method   : LlamaDecoderLayerAuto[0m
+[35m[2024-03-07 14:36:32,077] [   DEBUG][0m - wandb_api_key                 : None[0m
+[35m[2024-03-07 14:36:32,077] [   DEBUG][0m - warmup_ratio                  : 0.01[0m
+[35m[2024-03-07 14:36:32,077] [   DEBUG][0m - warmup_steps                  : 0[0m
+[35m[2024-03-07 14:36:32,077] [   DEBUG][0m - weight_decay                  : 0.01[0m
+[35m[2024-03-07 14:36:32,077] [   DEBUG][0m - weight_name_suffix            : None[0m
+[35m[2024-03-07 14:36:32,077] [   DEBUG][0m - world_size                    : 8[0m
+[35m[2024-03-07 14:36:32,077] [   DEBUG][0m - [0m
+[32m[2024-03-07 14:36:32,078] [    INFO][0m - Starting training from resume_from_checkpoint : None[0m
+[32m[2024-03-07 14:36:32,087] [    INFO][0m - [timelog] checkpoint loading time: 0.00s (2024-03-07 14:36:32) [0m
+[32m[2024-03-07 14:36:32,087] [    INFO][0m - ***** Running training *****[0m
+[32m[2024-03-07 14:36:32,087] [    INFO][0m -   Num examples = 57,600[0m
+[32m[2024-03-07 14:36:32,087] [    INFO][0m -   Num Epochs = 1[0m
+[32m[2024-03-07 14:36:32,087] [    INFO][0m -   Instantaneous batch size per device = 1[0m
+[32m[2024-03-07 14:36:32,087] [    INFO][0m -   Total train batch size (w. parallel, distributed & accumulation) = 8[0m
+[32m[2024-03-07 14:36:32,087] [    INFO][0m -   Gradient Accumulation steps = 4[0m
+[32m[2024-03-07 14:36:32,087] [    INFO][0m -   Total optimization steps = 10[0m
+[32m[2024-03-07 14:36:32,088] [    INFO][0m -   Total num train samples = 80[0m
+[35m[2024-03-07 14:36:32,089] [   DEBUG][0m -   Number of trainable parameters = 1,881,214,976 (per device)[0m
+[2024-03-07 14:36:32,093] [    INFO] cluster.py:914 - Node Count: 1, Local Device Size: 8, GPU Model: V100, GPU Memory: 32GB, World size: 8, EndPoint: 10.127.24.147:61027.
+[2024-03-07 14:36:32,093] [    INFO] engine.py:202 - Distribute training by paddle.distributed.launch
+[2024-03-07 14:36:32,094] [    INFO] distributed_strategy.py:214 - distributed strategy initialized
+[2024-03-07 14:36:32,094] [ WARNING] fleet.py:272 - The dygraph parallel environment has been initialized.
+[2024-03-07 14:36:32,094] [ WARNING] fleet.py:295 - The dygraph hybrid parallel environment has been initialized.
+[2024-03-07 14:36:32,737] [    INFO] engine.py:660 - Building model with 'to_static' method.
+INFO 2024-03-07 14:36:32,739 helper.py:249] start to build program for mode = train.
+/usr/local/lib/python3.8/dist-packages/paddle/base/framework.py:3150: UserWarning: The Attr(force_cpu) of Op(fill_constant) will be deprecated in the future, please use 'device_guard' instead. 'device_guard' has higher priority when they are used at the same time.
+  warnings.warn(
+I0307 14:36:33.934834 41047 custom_operator.cc:1296] register pir custom op :fused_rms_norm
+I0307 14:36:33.934917 41047 custom_operator.cc:1296] register pir custom op :fused_rms_norm_grad
+I0307 14:36:33.935047 41047 custom_operator.cc:1296] register pir custom op :fused_ln
+I0307 14:36:33.935058 41047 custom_operator.cc:1296] register pir custom op :fused_ln_grad
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/root/.cache/paddle/to_static_tmp/41047/LlamaPretrainingCriterion3DAuto_forwardj4v_zj6c.py:29: UserWarning: enable_parallel_cross_entropy, the vocab_size should be splited: 32000, 32000
+  _jst.Call(_jst.Ld(_jst.Ld(warnings).warn))(f'enable_parallel_cross_entropy, the vocab_size should be splited: {_jst.Ld(_jst.Shape(_jst.Ld(prediction_scores))[-1])}, {_jst.Ld(_jst.Ld(_jst.Ld(self).config).vocab_size)}')
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+WARNING 2024-03-07 14:36:37,809 helper.py:467] The startup_program is not built by `lazy init`.
+WARNING 2024-03-07 14:36:37,812 helper.py:467] The startup_program is not built by `lazy init`.
+WARNING: there are some orphan tensors or ops which are not used in the execution.
+Thu Mar 07 14:36:39-INFO: Using Auto VPP
+Thu Mar 07 14:36:39-INFO: stage=[0], chunk_id=[0], layer_name=[['LlamaDecoderLayerAuto', 'LlamaDecoderLayerAuto_1']]
+Thu Mar 07 14:36:39-INFO: start op: [lookup_table_v2]: [['input0', 'embedding_0.w_0.dist']] [['embedding_0.tmp_0']]
+Thu Mar 07 14:36:39-INFO: end op: [elementwise_add]: [['tmp_26', 'linear_13.tmp_0']] [['tmp_27']]
+Thu Mar 07 14:36:39-INFO: stage=[1], chunk_id=[0], layer_name=[['LlamaDecoderLayerAuto_2', 'LlamaDecoderLayerAuto_3']]
+Thu Mar 07 14:36:39-INFO: start op: [fused_rms_norm]: [['create_parameter_4.w_0', 'tmp_27']] [['_generated_var_9', '_generated_var_8']]
+Thu Mar 07 14:36:39-INFO: end op: [elementwise_add]: [['tmp_52', 'linear_27.tmp_0']] [['tmp_53']]
+Thu Mar 07 14:36:39-INFO: stage=[0], chunk_id=[1], layer_name=[['LlamaDecoderLayerAuto_4', 'LlamaDecoderLayerAuto_5']]
+Thu Mar 07 14:36:39-INFO: start op: [assign]: [['expand_0.tmp_0']] [['reshard_api.tmp_4']]
+Thu Mar 07 14:36:39-INFO: end op: [elementwise_add]: [['tmp_78', 'linear_41.tmp_0']] [['tmp_79']]
+Thu Mar 07 14:36:39-INFO: stage=[1], chunk_id=[1], layer_name=[['LlamaDecoderLayerAuto_6', 'LlamaDecoderLayerAuto_7']]
+Thu Mar 07 14:36:39-INFO: start op: [fused_rms_norm]: [['create_parameter_12.w_0', 'tmp_79']] [['_generated_var_25', '_generated_var_24']]
+Thu Mar 07 14:36:39-INFO: end op: [reduce_mean]: [['tmp_109']] [['mean_0.tmp_0']]
+[2024-03-07 14:36:42,657] [    INFO] process_group.py:150 - group_id: 0, ranks: [0, 1, 2, 3, 4, 5, 6, 7], nranks: 8, trainer_endpoints: 10.127.24.147:61027
+[2024-03-07 14:36:43,719] [    INFO] process_group.py:150 - group_id: 35, ranks: [0, 4], nranks: 2, trainer_endpoints: 10.127.24.147:61027
+[2024-03-07 14:36:43,802] [    INFO] process_group.py:150 - group_id: 36, ranks: [4, 5], nranks: 2, trainer_endpoints: 10.127.24.147:61027
+[2024-03-07 14:36:44,092] [    INFO] process_group.py:150 - group_id: 40, ranks: [0, 1, 4, 5], nranks: 4, trainer_endpoints: 10.127.24.147:61027
+[2024-03-07 14:36:44,451] [    INFO] process_group.py:150 - group_id: 43, ranks: [4, 6], nranks: 2, trainer_endpoints: 10.127.24.147:61027
+/usr/local/lib/python3.8/dist-packages/paddle/distributed/auto_parallel/static/process_group.py:255: VisibleDeprecationWarning: [93m
+Warning:
+API "paddle.device.cuda.synchronize" is deprecated since 2.5.0, and will be removed in future versions. Please use "paddle.device.synchronize" instead.
+    Reason: synchronize in paddle.device.cuda will be removed in future [0m
+  paddle.device.cuda.synchronize()
+[2024-03-07 14:36:44,914] [    INFO] process_group.py:150 - group_id: 49, ranks: [6, 4], nranks: 2, trainer_endpoints: 10.127.24.147:61027
+I0307 14:36:46.079031 41047 program_interpreter.cc:220] New Executor is Running.
+grep: warning: GREP_OPTIONS is deprecated; please use an alias or script
+[33m[2024-03-07 14:43:17,582] [ WARNING][0m - evaluation_strategy reset to IntervalStrategy.STEPS for do_eval is True. you can also set evaluation_strategy='epoch'.[0m
+/root/zzh/codes/PaddleNLP/paddlenlp/trainer/training_args.py:887: UserWarning: `--sharding_parallel_degree` is useful only when `--sharding` is specified.
+  warnings.warn("`--sharding_parallel_degree` is useful only when `--sharding` is specified.")
+[32m[2024-03-07 14:43:17,583] [    INFO][0m - PP configs:{"enable":"True","schedule_mode":"VPP","vpp_degree":"1","vpp_seg_method":"","micro_batch_size":"1","accumulate_steps":"4","generation_batch_size":"1","enable_send_recv_overlap":"False","job_schedule_profiler_start":"-1","job_schedule_profiler_stop":"-1",}, use master_grad: False[0m
+[33m[2024-03-07 14:43:17,583] [ WARNING][0m - In pipeline model, the evaluation also shares same setting with training. We will enforce that per_device_eval_batch_size=per_device_train_batch_size * gradient_accumulation_steps.[0m
+[2024-03-07 14:43:17,584] [    INFO] distributed_strategy.py:214 - distributed strategy initialized
+======================= Modified FLAGS detected =======================
+FLAGS(name='FLAGS_cusparse_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cusparse/lib', default_value='')
+FLAGS(name='FLAGS_cupti_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cuda_cupti/lib', default_value='')
+FLAGS(name='FLAGS_cudnn_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cudnn/lib', default_value='')
+FLAGS(name='FLAGS_cusolver_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cusolver/lib', default_value='')
+FLAGS(name='FLAGS_nccl_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/nccl/lib', default_value='')
+FLAGS(name='FLAGS_cublas_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cublas/lib', default_value='')
+FLAGS(name='FLAGS_curand_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/curand/lib', default_value='')
+FLAGS(name='FLAGS_selected_gpus', current_value='4', default_value='')
+=======================================================================
+I0307 14:43:17.585827 48153 tcp_utils.cc:130] Successfully connected to 10.127.24.147:56842
+I0307 14:43:17.586015 48153 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:43:17.586030 48153 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+I0307 14:43:17.586639 48153 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:43:17.586663 48153 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+[2024-03-07 14:43:17,586] [    INFO] topology.py:371 - Total 4 pipe comm group(s) create successfully!
+W0307 14:43:17.589283 48153 gpu_resources.cc:119] Please NOTE: device: 4, GPU Compute Capability: 7.0, Driver API Version: 11.0, Runtime API Version: 11.8
+W0307 14:43:17.625834 48153 gpu_resources.cc:164] device: 4, cuDNN Version: 8.6.
+W0307 14:43:17.625880 48153 gpu_resources.cc:196] WARNING: device: 4. The installed Paddle is compiled with CUDA 11.8, but CUDA runtime version in your machine is 11.0, which may cause serious incompatible bug. Please recompile or reinstall Paddle with compatible CUDA version.
+I0307 14:43:21.170411 48153 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:43:21.170464 48153 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+[2024-03-07 14:43:21,170] [    INFO] topology.py:371 - Total 4 data comm group(s) create successfully!
+I0307 14:43:21.170845 48153 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:43:21.170853 48153 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+[2024-03-07 14:43:21,170] [    INFO] topology.py:371 - Total 4 model comm group(s) create successfully!
+[2024-03-07 14:43:21,171] [    INFO] topology.py:371 - Total 8 sharding comm group(s) create successfully!
+I0307 14:43:21.171105 48153 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:43:21.171113 48153 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+I0307 14:43:21.171145 48153 process_group_nccl.cc:132] ProcessGroupNCCL pg_timeout_ 1800000
+I0307 14:43:21.171151 48153 process_group_nccl.cc:133] ProcessGroupNCCL nccl_comm_init_option_ 0
+[2024-03-07 14:43:21,171] [    INFO] topology.py:293 - HybridParallelInfo: rank_id: 4, mp_degree: 2, sharding_degree: 1, pp_degree: 2, dp_degree: 2, sep_degree: 1, mp_group: [4, 5],  sharding_group: [4], pp_group: [4, 6], dp_group: [0, 4], sep:group: None, check/clip group: [4, 5, 6, 7]
+[32m[2024-03-07 14:43:21,172] [    INFO][0m - The default value for the training argument `--report_to` will change in v5 (from all installed integrations to none). In v5, you will need to use `--report_to all` to get the same behavior as now. You should start updating your code and make this info disappear :-).[0m
+[32m[2024-03-07 14:43:21,172] [    INFO][0m - {"auto_mode":"semi","gradient_scale":"True","gradient_scale_using_allreduce_avg":"False","use_cache":"True","return_numpy":"True","all_ranks":"False","split_data":"True","seed":"None","reinit":"False","recompute":"{'enable': False, 'checkpoints': [], 'no_recompute_segments': [], 'sr': 0, 'refined_ops_patterns': [], 'enable_tuning': False}","amp":"{'enable': False, 'dtype': 'float16', 'level': 'o1', 'init_loss_scaling': 32768.0, 'incr_every_n_steps': 1000, 'decr_every_n_nan_or_inf': 2, 'incr_ratio': 2.0, 'decr_ratio': 0.8, 'use_dynamic_loss_scaling': True, 'custom_white_list': [], 'custom_black_list': [], 'custom_black_varnames': [], 'use_fp16_guard': False, 'use_bf16_guard': False, 'use_master_grad': False}","sharding":"{'enable': False, 'stage': 1, 'degree': 8, 'enable_overlap': False, 'param_comm_stream_num': 1, 'grad_comm_stream_num': 1, 'param_bucket_size_numel': 1, 'grad_bucket_size_numel': 1, 'enable_hierarchical_comm': False, 'partition_algor': 'greedy_even', 'enable_tuning': False, 'tuning_range': []}","gradient_merge":"{'enable': False, 'k_steps': 1, 'avg': True, 'dp_gradient_sync_after_accumulate': False}","pipeline":"{'enable': True, 'schedule_mode': 'VPP', 'vpp_degree': 1, 'vpp_seg_method': '', 'micro_batch_size': 1, 'accumulate_steps': 4, 'generation_batch_size': 1, 'enable_send_recv_overlap': False, 'job_schedule_profiler_start': -1, 'job_schedule_profiler_stop': -1}","qat":"{'enable': False, 'channel_wise_abs_max': True, 'weight_bits': 8, 'activation_bits': 8, 'not_quant_pattern': ['skip_quant'], 'algo': None, 'onnx_format': True}","tuning":"{'enable': False, 'profile_start_step': 1, 'profile_end_step': 1, 'run_after_tuning': True, 'debug': False}","dataset":"{'enable': False, 'num_shards': 1}","fused_passes":"{'enable': False, 'fused_passes_list': []}","fused_linear_promotion":"{'enable': False}","dp_optimization":"{'enable': False, 'fuse_all_reduce_ops': True, 'fuse_grad_size_in_MB': 32, 'overlap_comm_cacl': True}","mp_optimization":"{'allreduce_matmul_grad_overlapping': False}","sp_optimization":"{'enable': False}",}[0m
+[32m[2024-03-07 14:43:21,173] [    INFO][0m - The global seed is set to 46, local seed is set to 54 and random seed is set to 42.[0m
+======================= Modified FLAGS detected =======================
+FLAGS(name='FLAGS_cusparse_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cusparse/lib', default_value='')
+FLAGS(name='FLAGS_cupti_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cuda_cupti/lib', default_value='')
+FLAGS(name='FLAGS_cudnn_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cudnn/lib', default_value='')
+FLAGS(name='FLAGS_cusolver_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cusolver/lib', default_value='')
+FLAGS(name='FLAGS_nccl_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/nccl/lib', default_value='')
+FLAGS(name='FLAGS_cublas_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/cublas/lib', default_value='')
+FLAGS(name='FLAGS_curand_dir', current_value='/usr/local/lib/python3.8/dist-packages/paddle/../nvidia/curand/lib', default_value='')
+FLAGS(name='FLAGS_selected_gpus', current_value='4', default_value='')
+=======================================================================
+[35m[2024-03-07 14:43:21,174] [   DEBUG][0m - ============================================================[0m
+[35m[2024-03-07 14:43:21,174] [   DEBUG][0m -      Model Configuration Arguments      [0m
+[35m[2024-03-07 14:43:21,174] [   DEBUG][0m - paddle commit id              : ce649b1d58ba86493d9cd1f3ae11764e95806498[0m
+[35m[2024-03-07 14:43:21,174] [   DEBUG][0m - paddlenlp commit id           : e3cb5d239b91a370a2a91f113ab22052d5711748.dirty[0m
+[35m[2024-03-07 14:43:21,174] [   DEBUG][0m - config_name                   : None[0m
+[35m[2024-03-07 14:43:21,175] [   DEBUG][0m - continue_training             : False[0m
+[35m[2024-03-07 14:43:21,175] [   DEBUG][0m - fuse_attention_ffn            : False[0m
+[35m[2024-03-07 14:43:21,175] [   DEBUG][0m - fuse_attention_qkv            : False[0m
+[35m[2024-03-07 14:43:21,175] [   DEBUG][0m - fuse_sequence_parallel_allreduce: False[0m
+[35m[2024-03-07 14:43:21,175] [   DEBUG][0m - hidden_size                   : None[0m
+[35m[2024-03-07 14:43:21,175] [   DEBUG][0m - intermediate_size             : None[0m
+[35m[2024-03-07 14:43:21,175] [   DEBUG][0m - model_name_or_path            : facebook/llama-7b[0m
+[35m[2024-03-07 14:43:21,175] [   DEBUG][0m - model_type                    : llama[0m
+[35m[2024-03-07 14:43:21,175] [   DEBUG][0m - no_recompute_layers           : None[0m
+[35m[2024-03-07 14:43:21,175] [   DEBUG][0m - num_attention_heads           : None[0m
+[35m[2024-03-07 14:43:21,175] [   DEBUG][0m - num_hidden_layers             : 8[0m
+[35m[2024-03-07 14:43:21,176] [   DEBUG][0m - pp_recompute_interval         : 1[0m
+[35m[2024-03-07 14:43:21,176] [   DEBUG][0m - recompute_granularity         : full[0m
+[35m[2024-03-07 14:43:21,176] [   DEBUG][0m - recompute_use_reentrant       : False[0m
+[35m[2024-03-07 14:43:21,176] [   DEBUG][0m - sequence_parallel             : False[0m
+[35m[2024-03-07 14:43:21,176] [   DEBUG][0m - tokenizer_name_or_path        : facebook/llama-7b[0m
+[35m[2024-03-07 14:43:21,176] [   DEBUG][0m - use_flash_attention           : False[0m
+[35m[2024-03-07 14:43:21,176] [   DEBUG][0m - use_fused_rms_norm            : True[0m
+[35m[2024-03-07 14:43:21,176] [   DEBUG][0m - use_fused_rope                : False[0m
+[35m[2024-03-07 14:43:21,176] [   DEBUG][0m - virtual_pp_degree             : 2[0m
+[35m[2024-03-07 14:43:21,176] [   DEBUG][0m - vocab_size                    : None[0m
+[35m[2024-03-07 14:43:21,176] [   DEBUG][0m - [0m
+[35m[2024-03-07 14:43:21,176] [   DEBUG][0m - ============================================================[0m
+[35m[2024-03-07 14:43:21,177] [   DEBUG][0m -       Data Configuration Arguments      [0m
+[35m[2024-03-07 14:43:21,177] [   DEBUG][0m - paddle commit id              : ce649b1d58ba86493d9cd1f3ae11764e95806498[0m
+[35m[2024-03-07 14:43:21,177] [   DEBUG][0m - paddlenlp commit id           : e3cb5d239b91a370a2a91f113ab22052d5711748.dirty[0m
+[35m[2024-03-07 14:43:21,177] [   DEBUG][0m - data_cache                    : None[0m
+[35m[2024-03-07 14:43:21,177] [   DEBUG][0m - data_impl                     : mmap[0m
+[35m[2024-03-07 14:43:21,177] [   DEBUG][0m - input_dir                     : ./data[0m
+[35m[2024-03-07 14:43:21,177] [   DEBUG][0m - max_seq_length                : 2048[0m
+[35m[2024-03-07 14:43:21,177] [   DEBUG][0m - share_folder                  : False[0m
+[35m[2024-03-07 14:43:21,177] [   DEBUG][0m - skip_warmup                   : True[0m
+[35m[2024-03-07 14:43:21,177] [   DEBUG][0m - split                         : 949,50,1[0m
+[35m[2024-03-07 14:43:21,177] [   DEBUG][0m - [0m
+[33m[2024-03-07 14:43:21,178] [ WARNING][0m - Process rank: 4, device: gpu, world_size: 8, distributed training: True, 16-bits training: False[0m
+[32m[2024-03-07 14:43:21,178] [    INFO][0m - We are using (<class 'paddlenlp.transformers.llama.tokenizer.LlamaTokenizer'>, False) to load 'facebook/llama-7b'.[0m
+[32m[2024-03-07 14:43:21,178] [    INFO][0m - Already cached /root/.paddlenlp/models/facebook/llama-7b/sentencepiece.bpe.model[0m
+[32m[2024-03-07 14:43:21,194] [    INFO][0m - tokenizer config file saved in /root/.paddlenlp/models/facebook/llama-7b/tokenizer_config.json[0m
+[32m[2024-03-07 14:43:21,195] [    INFO][0m - Special tokens file saved in /root/.paddlenlp/models/facebook/llama-7b/special_tokens_map.json[0m
+[32m[2024-03-07 14:43:21,259] [    INFO][0m - Found /root/.paddlenlp/models/facebook/llama-7b/config.json[0m
+[32m[2024-03-07 14:43:21,260] [    INFO][0m - Loading configuration file /root/.paddlenlp/models/facebook/llama-7b/config.json[0m
+[32m[2024-03-07 14:43:21,261] [    INFO][0m - Reset vocab size to 32000 for batter amp peformance.[0m
+Final pre-training config: LlamaConfig {
+  "alibi": false,
+  "architectures": [
+    "LlamaForCausalLM"
+  ],
+  "bos_token_id": 1,
+  "eos_token_id": 2,
+  "fuse_attention_ffn": false,
+  "fuse_attention_qkv": false,
+  "fuse_sequence_parallel_allreduce": false,
+  "hidden_size": 4096,
+  "initializer_range": 0.02,
+  "intermediate_size": 11008,
+  "max_position_embeddings": 2048,
+  "model_type": "llama",
+  "no_recompute_layers": null,
+  "num_attention_heads": 32,
+  "num_hidden_layers": 8,
+  "num_key_value_heads": 32,
+  "pad_token_id": 0,
+  "paddlenlp_version": null,
+  "pp_recompute_interval": 1,
+  "recompute_granularity": "full",
+  "rms_norm_eps": 1e-06,
+  "rope_scaling_factor": 1.0,
+  "rope_scaling_type": null,
+  "seq_length": 2048,
+  "sequence_parallel": false,
+  "tensor_parallel_degree": 2,
+  "tensor_parallel_output": true,
+  "tie_word_embeddings": false,
+  "use_fused_rms_norm": true,
+  "use_fused_rope": false,
+  "use_recompute": false,
+  "virtual_pp_degree": 2,
+  "vocab_size": 32000
+}
+
+Using old dataet (.npy & .npz)
+searching for causual dataset, build_indices=False, share_folder False, check_rank_flag False
+build success
+searching for causual dataset, build_indices=False, share_folder False, check_rank_flag False
+build success
+searching for causual dataset, build_indices=False, share_folder False, check_rank_flag False
+build success
+[32m[2024-03-07 14:43:24,899] [    INFO][0m - Sample data for train mode.[0m
+[32m[2024-03-07 14:43:24,915] [    INFO][0m - . How?? Well thats the magic!! Its a bit complicated to explain here. Get the book and read Chapter 9. But it works! Check this out:Amazing isn't it? And the even more amazing thing is that it is not specific to factorial. See thisWoohoo!! On a roll now..You can take any recursive function, and rewrite it in the above style and the Y combinator will make a recursive version of it. How cool is that?</s> Perception.
+
+Computational models of facial attractiveness judgments.
+
+Strikingly, both models produced estimates of facial attractiveness that were indistinguishable from human ratings.
+
+The image factors that the model discovered correspond to two of the main contemporary hypotheses of averageness judgments: facial attractiveness and sexual dimorphism.
+
+This provides novel evidence for the importance of averageness and sexual dimorphism, but not symmetry, in human judgments of facial attractiveness.
+
+Very related: Computer taught to recognize female attractiveness 2008;37(1):126-42.Related ArticlesBronstad PM, Langlois JH, Russell R.We designed two computational models to replicate human facial attractiveness ratings. The primary model used partial least squares (PLS) to identify image factors associated with facial attractiveness from facial images and attractiveness ratings of those images. For comparison we also made a model similar to previous models of facial attractiveness, in that it used manually derived measurements between features as inputs, though we took the additional step of dimensionality reduction via principal component analysis (PCA) and weighting of PCA dimensions via a perceptron.Because PLS extracts a small number of image factors from the facial images that covary with attractiveness ratings of the images, it is possible to determine the information used by the model.In contrast, facial symmetry was not important to the model, and an explicit feature-based measurement of symmetry was not correlated with human judgments of facial attractiveness.</s> The news comes after the Telegraph launched a campaign calling for a fair deal for motorists. This follows a 50 per cent increase in the amount of car-related tax since Labour came to power.</s> Mengenal Gaya Bermain Poker Online Pada Pemain Profesional
+
+Mengenal Gaya Bermain Poker Online Pada Pemain Profesional – Ada beberapa hal yang harus anda ketahui ketika anda bermain poker online ini. Salah satunya adalah mengenal gaya bermain poker online pada setiap pemain yang melakukan taruhan ini. Gaya bermain ini sering dikatakan sebagai playing styles, dimana terdapat banyak sekali gaya yang harus anda ketahui. Berikut […]</s>U.S. troops working the streets of the capital fear one Iraqi weapon more than others -- a copper-plated explosive that can penetrate armor and has proved devastating to Humvees and even capable of severely damaging tanks.
+
+The power of what the military calls an EFP -- for explosively formed penetrator, or projectile -- to spray molten metal balls that punch through the armor on vehicles has some American troops rethinking their tactics. They are asking whether the U.S. should give up its reliance on making constant improvements to vehicle defenses.
+
+Instead, these troops think, it is time to leave the armor behind -- and get out and walk.
+
+“In our area, the biggest threat for us is EFPs. When you are in the vehicles, you are a big target,” said Army Staff Sgt. Cavin Moskwa, 33, of Hawaii, who patrols Baghdad’s Zafraniya neighborhood with the Bravo Battery of the 2nd Battalion, 17th Field Artillery Regiment. “But when you are dismounted... you are a lot safer.”
+
+Advertisement
+
+In the last three days, 15 U.S. troops have been killed in Iraq, nine of them in two powerful roadside bomb blasts. The military does not publicly identify the kind of weapon used in improvised explosive attacks, but the deadly nature of the blasts Wednesday and Thursday suggested that EFPs may have been used.
+
+The deaths brought to 3,545 the total number of U.S. troops killed in the Iraq theater since the March 2003 American-led invasion, the U.S. military said. Hundreds of these troops have been killed by EFPs and other kinds of improvised explosive devices, or IEDs. The Pentagon’s most recent Iraq status report said EFP attacks were at an all-time high.
+
+Foot patrols, of course, are not a fail-safe method. On city streets, snipers remain a threat. And bombs can still kill dismounted troops. But when blasts occur in the middle of a foot patrol, the number of casualties are generally lower because the troops are more spread out.
+
+Before a foot patrol last week through a neighborhood next to Baghdad’s Sadr City district, a private with Alpha Company of the Army’s 1st Battalion, 8th Cavalry Regiment, began complaining about having to walk. But EFPs have claimed the lives of several soldiers in the unit, and Sgt. Leland Kidd, 28, of Gonzales, Texas, said the private should be thankful they were on foot.
+
+Advertisement
+
+“When I walk on my feet, I don’t have to worry about being blown up,” Kidd told the private. “In the vehicle, I have to.”
+
+Top commanders have been encouraging more such units in Baghdad to take just that tack.
+
+A counterinsurgency guidance memo released last week by Army Lt. Gen Raymond T. Odierno, the commander of day-to-day military operations, urges Iraqi and American troops to “get out and walk.”
+
+The memo argues that although Humvees offer protection, they also make units predictable and “insulate us from the Iraqi people we intend to secure.”
+
+Advertisement
+
+The original draft of the memo, written by counterinsurgency expert David Kilcullen, goes further. It notes that EFP attacks on Humvees damage them heavily. “So we gain little in safety, but sacrifice much in effectiveness,” the draft reads.
+
+One reason for the increased number of troops victimized by roadside bombs is that there are more forces in Iraq now, Marine Gen. Peter Pace, chairman of the Joint Chiefs of Staff, said at a Pentagon news conference Thursday. This month, the final additional American combat units arrived in Baghdad, as part of a counterinsurgency strategy announced by President Bush in January that has increased the U.S. military presence in Iraq by 28,500 troops.
+
+“As we’re taking the fight to the enemy with the additional troops, we can expect that there’s going to be tough fighting ahead,” Pace said. “So it is an expectation that this surge is going to result in more contact and therefore more casualties.”
+
+But another reason for the rising death toll is the ability of Iraq’s militants to adapt to new U.S. military tactics.
+
+Advertisement
+
+During the 2003 invasion, most American Humvees were outfitted with flimsy canvas doors. When the first improvised explosive devices made from artillery shells appeared, the military scrambled to put stronger armor on the vehicles. Since then, the military has repeatedly upgraded Humvee armor as militants have made bigger and bigger bombs.
+
+But the small and easily hidden EFPs, which often are powered by C-4 plastic explosives, are not just a more powerful IED. Military personnel experienced with the projectiles say that what makes the weapons so deadly is that they use the Americans’ own armor against them. As the hot copper slug melts through the armor of a Humvee, it transforms the protective plating into shrapnel that sprays into the passenger cabin, they say.
+
+“We joked about going back to canvas doors. That way, unless it hits you directly, you are OK,” said Army Sgt. William Bowman, 31, of Fort Myers, Fla.
+
+But to Moskwa, the staff sergeant from Hawaii, the question of armor is no joke. Moskwa, who served as an Army recruiter in Pasadena before deploying to Iraq, thinks armor on vehicles and body armor on troops are too restrictive, hampering a service member’s ability to move quickly and agilely.
+
+Advertisement
+
+“I would rather go out without any armor or gear,” he said. “If an EFP hits the vehicle, you are dead anyway no[0m
+[32m[2024-03-07 14:43:24,916] [    INFO][0m - Sample data for valid mode.[0m
+[32m[2024-03-07 14:43:24,932] [    INFO][0m - intolerant of large, polluting industrial plants on their doorsteps. Second, American power companies are fearful that they will soon have to pay for one particular pollutant, carbon dioxide, as is starting to happen in other parts of the rich world. Having invested heavily in gas-fired stations, only to find themselves locked into an increasingly expensive fuel, they do not want to make another mistake.
+
+That has opened up a capacity gap and an opportunity for wind and sunlight. The future price of these resources—zero—is known. That certainty has economic value as a hedge, even if the capital cost of wind and solar power stations is, at the moment, higher than that of coal-fired ones.
+
+The reasons for the boom, then, are tangled, and the way they are perceived may change. Global warming, a long-range phenomenon, may not be uppermost in people's minds during an economic downturn. High fuel prices may fall as new sources of supply are exploited to fill rising demand from Asia. Security of supply may improve if hostile governments are replaced by friendly ones and sources become more diversified. But none of the reasons is likely to go away entirely.
+
+Global warming certainly will not. “Peak oil”, if oil means the traditional sort that comes cheaply out of holes in the ground, probably will arrive soon. There is oil aplenty of other sorts (tar sands, liquefied coal and so on), so the stuff is unlikely to run out for a long time yet. But it will get more expensive to produce, putting a floor on the price that is way above today's. And political risk will always be there—particularly for oil, which is so often associated with bad government for the simple reason that its very presence causes bad government in states that do not have strong institutions to curb their politicians.
+
+A prize beyond the dreams of avarice
+
+The market for energy is huge. At present, the world's population consumes about 15 terawatts of power. (A terawatt is 1,000 gigawatts, and a gigawatt is the capacity of the largest sort of coal-fired power station.) That translates into a business worth $6 trillion a year—about a tenth of the world's economic output—according to John Doerr, a venture capitalist who is heavily involved in the industry. And by 2050, power consumption is likely to have risen to 30 terawatts.
+
+Scale is one of the important differences between the coming energy boom, if it materialises, and its recent predecessors—particularly those that relied on information technology, a market measured in mere hundreds of billions. Another difference is that new information technologies tend to be disruptive, forcing the replacement of existing equipment, whereas, say, building wind farms does not force the closure of coal-fired power stations.
+
+For both of these reasons, any transition from an economy based on fossil fuels to one based on renewable, alternative, green energy—call it what you will—is likely to be slow, as similar changes have been in the past (see chart 1). On the other hand, the scale of the market provides opportunities for alternatives to prove themselves at the margin and then move into the mainstream, as is happening with wind power at the moment. And some energy technologies do have the potential to be disruptive. Plug-in cars, for example, could be fuelled with electricity at a price equivalent to 25 cents a litre of petrol. That could shake up the oil, carmaking and electricity industries all in one go.
+
+The innovation lull of the past few decades also provides opportunities for technological leapfrogging. Indeed, it may be that the field of energy gives the not-quite-booms in biotechnology and nanotechnology the industrial applications they need to grow really big, and that the three aspiring booms will thus merge into one.
+
+The possibility of thus recapturing the good times of their youth has brought many well-known members of the “technorati” out of their homes in places like Woodside, California. Energy has become supercool. Elon Musk, who co-founded PayPal, has developed a battery-powered sports car. Larry Page and Sergey Brin, the founders of Google, have started an outfit called Google.org that is searching for a way to make renewable energy truly cheaper than coal (or RE
+
+Vinod Khosla, one of the founders of Sun Microsystems, is turning his considerable skills as a venture capitalist towards renewable energy, as are Robert Metcalfe, who invented the ethernet system used to connect computers together in local networks, and Mr Doerr, who works at Kleiner Perkins Caufield & Byers, one of Silicon Valley's best-known venture-capital firms. Sir Richard Branson, too, is getting in on the act with his Virgin Green Fund.
+
+This renewed interest in energy is bringing forth a raft of ideas, some bright, some batty, that is indeed reminiscent of the dotcom boom. As happened in that boom, most of these ideas will come to naught. But there could just be a PayPal or a Google or a Sun among them.
+
+More traditional companies are also taking an interest. General Electric (GE), a large American engineering firm, already has a thriving wind-turbine business and is gearing up its solar-energy business. The energy researchers at its laboratories in Schenectady, New York, enjoy much of the intellectual freedom associated with start-up firms, combined with a secure supply of money.
+
+Meanwhile, BP and Shell, two of the world's biggest oil companies, are sponsoring both academic researchers and new, small firms with bright ideas, as is DuPont, one of the biggest chemical companies. Not everyone has joined in. Exxon Mobil, the world's largest oil company not in government hands, is conspicuously absent. But in many boardrooms renewables are no longer seen as just a way of keeping environmentalists off companies' backs.
+
+Some people complain that many existing forms of renewable energy rely on subsidies or other forms of special treatment for their viability. On the surface, that is true. Look beneath, though, and the whole energy sector is riddled with subsidies, both explicit and hidden, and costs that are not properly accounted for. Drawing on the work of people like Boyden Gray, a former White House counsel, Mr Woolsey estimates that American oil companies receive preferential treatment from their government worth more than $250 billion a year. And the Intergovernmental Panel on Climate Change (IPCC), a United Nations-appointed group of scientific experts, reckons that fossil fuels should carry a tax of $20-50 for every tonne of carbon dioxide they generate in order to pay for the environmental effects of burning them (hence the fears of the power-generators).
+
+So the subsidies and mandates offered to renewable sources of power such as wind turbines often just level the playing field. It is true that some subsidies amount to unwarranted market-rigging: examples include those handed by cloudy Germany to its solar-power industry and by America to its maize-based ethanol farmers when Brazilian sugar-based ethanol is far cheaper. Others, though, such as a requirement that a certain proportion of electricity be derived from non-fossil-fuel sources, make no attempt to pick particular technological winners. They merely act to stimulate innovation by guaranteeing a market to things that actually work.
+
+If the world were rational, all of these measures would be swept away and replaced by a proper tax on carbon—as is starting to happen in Europe, where the price arrived at by the cap-and-trade system being introduced is close to the IPCC's recommendation. If that occurred, wind-based electricity would already be competitive with fossil fuels and others would be coming close. Failing that, special treatment for alternatives is probably the least bad option—though such measures need to be crafted in ways that favour neither incumbents nor particular ways of doing things, and need to be withdrawn when they are no longer necessary.
+
+The poor world turns greener too
+
+That, at least, is the view from the rich world. But poorer, rapidly developing countries are also taking more of an interest in renewable energy sources, despite assertions to the contrary by some Western politicians and businessmen. It is true that China is building coal-fired power stations at a blazing rate. But it also has a large wind-generation capacity, which is expected to grow by two-thirds this year, and is the world's second-largest manufacturer of solar panels—not to mention having the largest number of solar-heated rooftop hot-water systems in its buildings.
+
+Brazil, meanwhile, has the world's second-largest (just behind America) and most econom[0m
+[32m[2024-03-07 14:43:24,933] [    INFO][0m - The global seed is set to 46, local seed is set to 54 and random seed is set to 42.[0m
+[32m[2024-03-07 14:43:24,934] [    INFO][0m - Successfully to apply @to_static to the whole model.[0m
+[32m[2024-03-07 14:43:25,055] [    INFO][0m - max_steps is given, it will override any value given in num_train_epochs[0m
+[35m[2024-03-07 14:43:25,055] [   DEBUG][0m - ============================================================[0m
+[35m[2024-03-07 14:43:25,055] [   DEBUG][0m -     Training Configuration Arguments    [0m
+[35m[2024-03-07 14:43:25,055] [   DEBUG][0m - paddle commit id              : ce649b1d58ba86493d9cd1f3ae11764e95806498[0m
+[35m[2024-03-07 14:43:25,055] [   DEBUG][0m - paddlenlp commit id           : e3cb5d239b91a370a2a91f113ab22052d5711748.dirty[0m
+[35m[2024-03-07 14:43:25,056] [   DEBUG][0m - _no_sync_in_gradient_accumulation: True[0m
+[35m[2024-03-07 14:43:25,056] [   DEBUG][0m - adam_beta1                    : 0.9[0m
+[35m[2024-03-07 14:43:25,056] [   DEBUG][0m - adam_beta2                    : 0.999[0m
+[35m[2024-03-07 14:43:25,056] [   DEBUG][0m - adam_epsilon                  : 1e-08[0m
+[35m[2024-03-07 14:43:25,056] [   DEBUG][0m - amp_custom_black_list         : None[0m
+[35m[2024-03-07 14:43:25,056] [   DEBUG][0m - amp_custom_white_list         : None[0m
+[35m[2024-03-07 14:43:25,056] [   DEBUG][0m - amp_master_grad               : False[0m
+[35m[2024-03-07 14:43:25,056] [   DEBUG][0m - autotuner_benchmark           : False[0m
+[35m[2024-03-07 14:43:25,056] [   DEBUG][0m - bf16                          : False[0m
+[35m[2024-03-07 14:43:25,056] [   DEBUG][0m - bf16_full_eval                : False[0m
+[35m[2024-03-07 14:43:25,056] [   DEBUG][0m - current_device                : gpu:4[0m
+[35m[2024-03-07 14:43:25,057] [   DEBUG][0m - data_parallel_config          : [0m
+[35m[2024-03-07 14:43:25,057] [   DEBUG][0m - data_parallel_degree          : 2[0m
+[35m[2024-03-07 14:43:25,057] [   DEBUG][0m - data_parallel_rank            : 1[0m
+[35m[2024-03-07 14:43:25,057] [   DEBUG][0m - dataloader_drop_last          : False[0m
+[35m[2024-03-07 14:43:25,057] [   DEBUG][0m - dataloader_num_workers        : 0[0m
+[35m[2024-03-07 14:43:25,057] [   DEBUG][0m - dataset_rank                  : 1[0m
+[35m[2024-03-07 14:43:25,057] [   DEBUG][0m - dataset_world_size            : 2[0m
+[35m[2024-03-07 14:43:25,057] [   DEBUG][0m - decay_steps                   : 10[0m
+[35m[2024-03-07 14:43:25,057] [   DEBUG][0m - device                        : gpu[0m
+[35m[2024-03-07 14:43:25,058] [   DEBUG][0m - disable_tqdm                  : True[0m
+[35m[2024-03-07 14:43:25,058] [   DEBUG][0m - distributed_dataloader        : False[0m
+[35m[2024-03-07 14:43:25,058] [   DEBUG][0m - do_eval                       : True[0m
+[35m[2024-03-07 14:43:25,058] [   DEBUG][0m - do_export                     : False[0m
+[35m[2024-03-07 14:43:25,058] [   DEBUG][0m - do_predict                    : False[0m
+[35m[2024-03-07 14:43:25,058] [   DEBUG][0m - do_train                      : True[0m
+[35m[2024-03-07 14:43:25,058] [   DEBUG][0m - enable_auto_parallel          : True[0m
+[35m[2024-03-07 14:43:25,058] [   DEBUG][0m - enable_linear_fused_grad_add  : False[0m
+[35m[2024-03-07 14:43:25,058] [   DEBUG][0m - eval_accumulation_steps       : None[0m
+[35m[2024-03-07 14:43:25,058] [   DEBUG][0m - eval_batch_size               : 4[0m
+[35m[2024-03-07 14:43:25,058] [   DEBUG][0m - eval_iters                    : 10[0m
+[35m[2024-03-07 14:43:25,058] [   DEBUG][0m - eval_steps                    : 1000000[0m
+[35m[2024-03-07 14:43:25,059] [   DEBUG][0m - evaluation_strategy           : IntervalStrategy.STEPS[0m
+[35m[2024-03-07 14:43:25,059] [   DEBUG][0m - flatten_param_grads           : False[0m
+[35m[2024-03-07 14:43:25,059] [   DEBUG][0m - force_reshard_pp              : False[0m
+[35m[2024-03-07 14:43:25,059] [   DEBUG][0m - fp16                          : False[0m
+[35m[2024-03-07 14:43:25,059] [   DEBUG][0m - fp16_full_eval                : False[0m
+[35m[2024-03-07 14:43:25,059] [   DEBUG][0m - fp16_opt_level                : O2[0m
+[35m[2024-03-07 14:43:25,059] [   DEBUG][0m - fused_linear_param_grad_add   : False[0m
+[35m[2024-03-07 14:43:25,059] [   DEBUG][0m - gradient_accumulation_steps   : 4[0m
+[35m[2024-03-07 14:43:25,059] [   DEBUG][0m - greater_is_better             : None[0m
+[35m[2024-03-07 14:43:25,060] [   DEBUG][0m - hybrid_parallel_topo_order    : None[0m
+[35m[2024-03-07 14:43:25,060] [   DEBUG][0m - ignore_data_skip              : False[0m
+[35m[2024-03-07 14:43:25,060] [   DEBUG][0m - ignore_load_lr_and_optim      : False[0m
+[35m[2024-03-07 14:43:25,060] [   DEBUG][0m - ignore_save_lr_and_optim      : False[0m
+[35m[2024-03-07 14:43:25,060] [   DEBUG][0m - job_schedule_profiler_end     : -1[0m
+[35m[2024-03-07 14:43:25,060] [   DEBUG][0m - job_schedule_profiler_start   : -1[0m
+[35m[2024-03-07 14:43:25,060] [   DEBUG][0m - label_names                   : None[0m
+[35m[2024-03-07 14:43:25,060] [   DEBUG][0m - lazy_data_processing          : True[0m
+[35m[2024-03-07 14:43:25,060] [   DEBUG][0m - learning_rate                 : 0.0001[0m
+[35m[2024-03-07 14:43:25,060] [   DEBUG][0m - load_best_model_at_end        : False[0m
+[35m[2024-03-07 14:43:25,060] [   DEBUG][0m - load_sharded_model            : False[0m
+[35m[2024-03-07 14:43:25,060] [   DEBUG][0m - local_process_index           : 4[0m
+[35m[2024-03-07 14:43:25,061] [   DEBUG][0m - local_rank                    : 4[0m
+[35m[2024-03-07 14:43:25,061] [   DEBUG][0m - log_level                     : -1[0m
+[35m[2024-03-07 14:43:25,061] [   DEBUG][0m - log_level_replica             : -1[0m
+[35m[2024-03-07 14:43:25,061] [   DEBUG][0m - log_on_each_node              : True[0m
+[35m[2024-03-07 14:43:25,061] [   DEBUG][0m - logging_dir                   : output/llama_auto_dp2mp2pp2/runs/Mar07_14-43-17_yq01-sys-hic-k8s-v100-box-a225-0491.yq01.baidu.com[0m
+[35m[2024-03-07 14:43:25,061] [   DEBUG][0m - logging_first_step            : False[0m
+[35m[2024-03-07 14:43:25,061] [   DEBUG][0m - logging_steps                 : 1[0m
+[35m[2024-03-07 14:43:25,061] [   DEBUG][0m - logging_strategy              : IntervalStrategy.STEPS[0m
+[35m[2024-03-07 14:43:25,061] [   DEBUG][0m - logical_process_index         : 4[0m
+[35m[2024-03-07 14:43:25,061] [   DEBUG][0m - lr_end                        : 1e-07[0m
+[35m[2024-03-07 14:43:25,062] [   DEBUG][0m - lr_scheduler_type             : SchedulerType.LINEAR[0m
+[35m[2024-03-07 14:43:25,062] [   DEBUG][0m - max_evaluate_steps            : -1[0m
+[35m[2024-03-07 14:43:25,062] [   DEBUG][0m - max_grad_norm                 : 1.0[0m
+[35m[2024-03-07 14:43:25,062] [   DEBUG][0m - max_steps                     : 10[0m
+[35m[2024-03-07 14:43:25,062] [   DEBUG][0m - metric_for_best_model         : None[0m
+[35m[2024-03-07 14:43:25,062] [   DEBUG][0m - min_learning_rate             : 1e-05[0m
+[35m[2024-03-07 14:43:25,062] [   DEBUG][0m - minimum_eval_times            : None[0m
+[35m[2024-03-07 14:43:25,062] [   DEBUG][0m - no_cuda                       : False[0m
+[35m[2024-03-07 14:43:25,062] [   DEBUG][0m - num_cycles                    : 0.5[0m
+[35m[2024-03-07 14:43:25,062] [   DEBUG][0m - num_train_epochs              : 3.0[0m
+[35m[2024-03-07 14:43:25,062] [   DEBUG][0m - optim                         : OptimizerNames.ADAMW[0m
+[35m[2024-03-07 14:43:25,062] [   DEBUG][0m - optimizer_name_suffix         : None[0m
+[35m[2024-03-07 14:43:25,063] [   DEBUG][0m - output_dir                    : output/llama_auto_dp2mp2pp2[0m
+[35m[2024-03-07 14:43:25,063] [   DEBUG][0m - overwrite_output_dir          : False[0m
+[35m[2024-03-07 14:43:25,063] [   DEBUG][0m - past_index                    : -1[0m
+[35m[2024-03-07 14:43:25,063] [   DEBUG][0m - per_device_eval_batch_size    : 4[0m
+[35m[2024-03-07 14:43:25,063] [   DEBUG][0m - per_device_train_batch_size   : 1[0m
+[35m[2024-03-07 14:43:25,063] [   DEBUG][0m - pipeline_parallel_config      : [0m
+[35m[2024-03-07 14:43:25,063] [   DEBUG][0m - pipeline_parallel_degree      : 2[0m
+[35m[2024-03-07 14:43:25,063] [   DEBUG][0m - pipeline_parallel_rank        : 0[0m
+[35m[2024-03-07 14:43:25,063] [   DEBUG][0m - pipeline_schedule_mode        : VPP[0m
+[35m[2024-03-07 14:43:25,063] [   DEBUG][0m - power                         : 1.0[0m
+[35m[2024-03-07 14:43:25,063] [   DEBUG][0m - prediction_loss_only          : False[0m
+[35m[2024-03-07 14:43:25,064] [   DEBUG][0m - process_index                 : 4[0m
+[35m[2024-03-07 14:43:25,064] [   DEBUG][0m - recompute                     : False[0m
+[35m[2024-03-07 14:43:25,064] [   DEBUG][0m - refined_ops_patterns          : None[0m
+[35m[2024-03-07 14:43:25,064] [   DEBUG][0m - remove_unused_columns         : True[0m
+[35m[2024-03-07 14:43:25,064] [   DEBUG][0m - report_to                     : ['visualdl'][0m
+[35m[2024-03-07 14:43:25,064] [   DEBUG][0m - resume_from_checkpoint        : None[0m
+[35m[2024-03-07 14:43:25,064] [   DEBUG][0m - run_name                      : output/llama_auto_dp2mp2pp2[0m
+[35m[2024-03-07 14:43:25,064] [   DEBUG][0m - save_on_each_node             : False[0m
+[35m[2024-03-07 14:43:25,064] [   DEBUG][0m - save_sharded_model            : False[0m
+[35m[2024-03-07 14:43:25,064] [   DEBUG][0m - save_steps                    : 5000000[0m
+[35m[2024-03-07 14:43:25,064] [   DEBUG][0m - save_strategy                 : IntervalStrategy.STEPS[0m
+[35m[2024-03-07 14:43:25,064] [   DEBUG][0m - save_total_limit              : None[0m
+[35m[2024-03-07 14:43:25,065] [   DEBUG][0m - scale_loss                    : 1024.0[0m
+[35m[2024-03-07 14:43:25,065] [   DEBUG][0m - seed                          : 42[0m
+[35m[2024-03-07 14:43:25,065] [   DEBUG][0m - sep_parallel_degree           : 1[0m
+[35m[2024-03-07 14:43:25,065] [   DEBUG][0m - sharding                      : [][0m
+[35m[2024-03-07 14:43:25,065] [   DEBUG][0m - sharding_degree               : -1[0m
+[35m[2024-03-07 14:43:25,065] [   DEBUG][0m - sharding_parallel_config      : [0m
+[35m[2024-03-07 14:43:25,065] [   DEBUG][0m - sharding_parallel_degree      : 1[0m
+[35m[2024-03-07 14:43:25,065] [   DEBUG][0m - sharding_parallel_rank        : 0[0m
+[35m[2024-03-07 14:43:25,065] [   DEBUG][0m - should_load_dataset           : True[0m
+[35m[2024-03-07 14:43:25,065] [   DEBUG][0m - should_load_sharding_stage1_model: False[0m
+[35m[2024-03-07 14:43:25,065] [   DEBUG][0m - should_log                    : True[0m
+[35m[2024-03-07 14:43:25,065] [   DEBUG][0m - should_save                   : True[0m
+[35m[2024-03-07 14:43:25,066] [   DEBUG][0m - should_save_model_state       : True[0m
+[35m[2024-03-07 14:43:25,066] [   DEBUG][0m - should_save_sharding_stage1_model: False[0m
+[35m[2024-03-07 14:43:25,066] [   DEBUG][0m - skip_memory_metrics           : True[0m
+[35m[2024-03-07 14:43:25,066] [   DEBUG][0m - skip_profile_timer            : True[0m
+[35m[2024-03-07 14:43:25,066] [   DEBUG][0m - sr                            : 0[0m
+[35m[2024-03-07 14:43:25,066] [   DEBUG][0m - strategy                      : {"auto_mode":"semi","gradient_scale":"True","gradient_scale_using_allreduce_avg":"False","use_cache":"True","return_numpy":"True","all_ranks":"False","split_data":"True","seed":"None","reinit":"False","recompute":"{'enable': False, 'checkpoints': [], 'no_recompute_segments': [], 'sr': 0, 'refined_ops_patterns': [], 'enable_tuning': False}","amp":"{'enable': False, 'dtype': 'float16', 'level': 'o1', 'init_loss_scaling': 32768.0, 'incr_every_n_steps': 1000, 'decr_every_n_nan_or_inf': 2, 'incr_ratio': 2.0, 'decr_ratio': 0.8, 'use_dynamic_loss_scaling': True, 'custom_white_list': [], 'custom_black_list': [], 'custom_black_varnames': [], 'use_fp16_guard': False, 'use_bf16_guard': False, 'use_master_grad': False}","sharding":"{'enable': False, 'stage': 1, 'degree': 8, 'enable_overlap': False, 'param_comm_stream_num': 1, 'grad_comm_stream_num': 1, 'param_bucket_size_numel': 1, 'grad_bucket_size_numel': 1, 'enable_hierarchical_comm': False, 'partition_algor': 'greedy_even', 'enable_tuning': False, 'tuning_range': []}","gradient_merge":"{'enable': False, 'k_steps': 1, 'avg': True, 'dp_gradient_sync_after_accumulate': False}","pipeline":"{'enable': True, 'schedule_mode': 'VPP', 'vpp_degree': 2, 'vpp_seg_method': 'LlamaDecoderLayerAuto', 'micro_batch_size': 1, 'accumulate_steps': 4, 'generation_batch_size': 1, 'enable_send_recv_overlap': False, 'job_schedule_profiler_start': -1, 'job_schedule_profiler_stop': -1}","qat":"{'enable': False, 'channel_wise_abs_max': True, 'weight_bits': 8, 'activation_bits': 8, 'not_quant_pattern': ['skip_quant'], 'algo': None, 'onnx_format': True}","tuning":"{'enable': False, 'profile_start_step': 1, 'profile_end_step': 1, 'run_after_tuning': True, 'debug': False}","dataset":"{'enable': False, 'num_shards': 1}","fused_passes":"{'enable': False, 'fused_passes_list': []}","fused_linear_promotion":"{'enable': False}","dp_optimization":"{'enable': False, 'fuse_all_reduce_ops': True, 'fuse_grad_size_in_MB': 32, 'overlap_comm_cacl': True}","mp_optimization":"{'allreduce_matmul_grad_overlapping': False}","sp_optimization":"{'enable': False}",}[0m
+[35m[2024-03-07 14:43:25,066] [   DEBUG][0m - tensor_parallel_config        : [0m
+[35m[2024-03-07 14:43:25,066] [   DEBUG][0m - tensor_parallel_degree        : 2[0m
+[35m[2024-03-07 14:43:25,066] [   DEBUG][0m - tensor_parallel_rank          : 0[0m
+[35m[2024-03-07 14:43:25,067] [   DEBUG][0m - test_iters                    : 100[0m
+[35m[2024-03-07 14:43:25,067] [   DEBUG][0m - to_static                     : True[0m
+[35m[2024-03-07 14:43:25,067] [   DEBUG][0m - train_batch_size              : 1[0m
+[35m[2024-03-07 14:43:25,067] [   DEBUG][0m - unified_checkpoint            : False[0m
+[35m[2024-03-07 14:43:25,067] [   DEBUG][0m - unified_checkpoint_config     : [0m
+[35m[2024-03-07 14:43:25,067] [   DEBUG][0m - use_hybrid_parallel           : False[0m
+[35m[2024-03-07 14:43:25,067] [   DEBUG][0m - virtual_pipeline_seg_method   : LlamaDecoderLayerAuto[0m
+[35m[2024-03-07 14:43:25,067] [   DEBUG][0m - wandb_api_key                 : None[0m
+[35m[2024-03-07 14:43:25,067] [   DEBUG][0m - warmup_ratio                  : 0.01[0m
+[35m[2024-03-07 14:43:25,067] [   DEBUG][0m - warmup_steps                  : 0[0m
+[35m[2024-03-07 14:43:25,067] [   DEBUG][0m - weight_decay                  : 0.01[0m
+[35m[2024-03-07 14:43:25,068] [   DEBUG][0m - weight_name_suffix            : None[0m
+[35m[2024-03-07 14:43:25,068] [   DEBUG][0m - world_size                    : 8[0m
+[35m[2024-03-07 14:43:25,068] [   DEBUG][0m - [0m
+[32m[2024-03-07 14:43:25,068] [    INFO][0m - Starting training from resume_from_checkpoint : None[0m
+[32m[2024-03-07 14:43:25,085] [    INFO][0m - [timelog] checkpoint loading time: 0.00s (2024-03-07 14:43:25) [0m
+[32m[2024-03-07 14:43:25,086] [    INFO][0m - ***** Running training *****[0m
+[32m[2024-03-07 14:43:25,086] [    INFO][0m -   Num examples = 57,600[0m
+[32m[2024-03-07 14:43:25,086] [    INFO][0m -   Num Epochs = 1[0m
+[32m[2024-03-07 14:43:25,086] [    INFO][0m -   Instantaneous batch size per device = 1[0m
+[32m[2024-03-07 14:43:25,086] [    INFO][0m -   Total train batch size (w. parallel, distributed & accumulation) = 8[0m
+[32m[2024-03-07 14:43:25,086] [    INFO][0m -   Gradient Accumulation steps = 4[0m
+[32m[2024-03-07 14:43:25,086] [    INFO][0m -   Total optimization steps = 10[0m
+[32m[2024-03-07 14:43:25,086] [    INFO][0m -   Total num train samples = 80[0m
+[35m[2024-03-07 14:43:25,087] [   DEBUG][0m -   Number of trainable parameters = 1,881,214,976 (per device)[0m
+[2024-03-07 14:43:25,091] [    INFO] cluster.py:914 - Node Count: 1, Local Device Size: 8, GPU Model: V100, GPU Memory: 32GB, World size: 8, EndPoint: 10.127.24.147:56847.
+[2024-03-07 14:43:25,092] [    INFO] engine.py:202 - Distribute training by paddle.distributed.launch
+[2024-03-07 14:43:25,092] [    INFO] distributed_strategy.py:214 - distributed strategy initialized
+[2024-03-07 14:43:25,092] [ WARNING] fleet.py:272 - The dygraph parallel environment has been initialized.
+[2024-03-07 14:43:25,092] [ WARNING] fleet.py:295 - The dygraph hybrid parallel environment has been initialized.
+[2024-03-07 14:43:25,668] [    INFO] engine.py:660 - Building model with 'to_static' method.
+INFO 2024-03-07 14:43:25,669 helper.py:249] start to build program for mode = train.
+/usr/local/lib/python3.8/dist-packages/paddle/base/framework.py:3150: UserWarning: The Attr(force_cpu) of Op(fill_constant) will be deprecated in the future, please use 'device_guard' instead. 'device_guard' has higher priority when they are used at the same time.
+  warnings.warn(
+I0307 14:43:26.801276 48153 custom_operator.cc:1296] register pir custom op :fused_rms_norm
+I0307 14:43:26.801352 48153 custom_operator.cc:1296] register pir custom op :fused_rms_norm_grad
+I0307 14:43:26.801482 48153 custom_operator.cc:1296] register pir custom op :fused_ln
+I0307 14:43:26.801493 48153 custom_operator.cc:1296] register pir custom op :fused_ln_grad
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+/root/.cache/paddle/to_static_tmp/48153/LlamaPretrainingCriterion3DAuto_forward34sgmwh8.py:29: UserWarning: enable_parallel_cross_entropy, the vocab_size should be splited: 32000, 32000
+  _jst.Call(_jst.Ld(_jst.Ld(warnings).warn))(f'enable_parallel_cross_entropy, the vocab_size should be splited: {_jst.Ld(_jst.Shape(_jst.Ld(prediction_scores))[-1])}, {_jst.Ld(_jst.Ld(_jst.Ld(self).config).vocab_size)}')
+/usr/local/lib/python3.8/dist-packages/paddle/jit/dy2static/convert_operators.py:796: UserWarning: paddle.amp.auto_cast is an experimental features in auto parallel.This will take no effect in normal dy2static.
+  warnings.warn(
+WARNING 2024-03-07 14:43:30,751 helper.py:467] The startup_program is not built by `lazy init`.
+WARNING 2024-03-07 14:43:30,755 helper.py:467] The startup_program is not built by `lazy init`.
+WARNING: there are some orphan tensors or ops which are not used in the execution.
+Thu Mar 07 14:43:32-INFO: Using Auto VPP
+Thu Mar 07 14:43:32-INFO: stage=[0], chunk_id=[0], layer_name=[['LlamaDecoderLayerAuto', 'LlamaDecoderLayerAuto_1']]
+Thu Mar 07 14:43:32-INFO: start op: [lookup_table_v2]: [['input0', 'embedding_0.w_0.dist']] [['embedding_0.tmp_0']]
+Thu Mar 07 14:43:32-INFO: end op: [elementwise_add]: [['tmp_26', 'linear_13.tmp_0']] [['tmp_27']]
+Thu Mar 07 14:43:32-INFO: stage=[1], chunk_id=[0], layer_name=[['LlamaDecoderLayerAuto_2', 'LlamaDecoderLayerAuto_3']]
+Thu Mar 07 14:43:32-INFO: start op: [fused_rms_norm]: [['create_parameter_4.w_0', 'tmp_27']] [['_generated_var_9', '_generated_var_8']]
+Thu Mar 07 14:43:32-INFO: end op: [elementwise_add]: [['tmp_52', 'linear_27.tmp_0']] [['tmp_53']]
+Thu Mar 07 14:43:32-INFO: stage=[0], chunk_id=[1], layer_name=[['LlamaDecoderLayerAuto_4', 'LlamaDecoderLayerAuto_5']]
+Thu Mar 07 14:43:32-INFO: start op: [assign]: [['expand_0.tmp_0']] [['reshard_api.tmp_4']]
+Thu Mar 07 14:43:32-INFO: end op: [elementwise_add]: [['tmp_78', 'linear_41.tmp_0']] [['tmp_79']]
+Thu Mar 07 14:43:32-INFO: stage=[1], chunk_id=[1], layer_name=[['LlamaDecoderLayerAuto_6', 'LlamaDecoderLayerAuto_7']]
+Thu Mar 07 14:43:32-INFO: start op: [fused_rms_norm]: [['create_parameter_12.w_0', 'tmp_79']] [['_generated_var_25', '_generated_var_24']]
+Thu Mar 07 14:43:32-INFO: end op: [reduce_mean]: [['tmp_109']] [['mean_0.tmp_0']]
+[2024-03-07 14:43:36,043] [    INFO] process_group.py:150 - group_id: 0, ranks: [0, 1, 2, 3, 4, 5, 6, 7], nranks: 8, trainer_endpoints: 10.127.24.147:56847
+[2024-03-07 14:43:37,718] [    INFO] process_group.py:150 - group_id: 35, ranks: [0, 4], nranks: 2, trainer_endpoints: 10.127.24.147:56847
+[2024-03-07 14:43:37,833] [    INFO] process_group.py:150 - group_id: 36, ranks: [4, 5], nranks: 2, trainer_endpoints: 10.127.24.147:56847
+[2024-03-07 14:43:38,389] [    INFO] process_group.py:150 - group_id: 40, ranks: [0, 1, 4, 5], nranks: 4, trainer_endpoints: 10.127.24.147:56847
+[2024-03-07 14:43:39,516] [    INFO] process_group.py:150 - group_id: 43, ranks: [4, 6], nranks: 2, trainer_endpoints: 10.127.24.147:56847
+/usr/local/lib/python3.8/dist-packages/paddle/distributed/auto_parallel/static/process_group.py:255: VisibleDeprecationWarning: [93m
+Warning:
+API "paddle.device.cuda.synchronize" is deprecated since 2.5.0, and will be removed in future versions. Please use "paddle.device.synchronize" instead.
+    Reason: synchronize in paddle.device.cuda will be removed in future [0m
+  paddle.device.cuda.synchronize()
+[2024-03-07 14:43:41,290] [    INFO] process_group.py:150 - group_id: 49, ranks: [6, 4], nranks: 2, trainer_endpoints: 10.127.24.147:56847
+I0307 14:43:43.565358 48153 program_interpreter.cc:220] New Executor is Running.

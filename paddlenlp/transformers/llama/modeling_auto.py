@@ -82,11 +82,24 @@ __all__ = [
 ]
 
 
+def is_pp_enable():
+    mesh = fleet.auto.get_mesh()
+    return "pp" in mesh.dim_names
+
+
 def get_mesh(pp_idx=0):
     mesh = fleet.auto.get_mesh()
     if "pp" in mesh.dim_names:
         mesh = mesh.get_mesh_with_dim("pp")[pp_idx]
     return mesh
+
+
+def global_mesh_starts_with_pp():
+    mesh = fleet.auto.get_mesh()
+    if is_pp_enable():
+        return mesh.get_mesh_with_dim("pp")
+    else:
+        return mesh
 
 
 def scaled_dot_product_attention(
@@ -800,21 +813,29 @@ class LlamaModelAuto(LlamaPretrainedModelAuto):
             [dist.Replicate(), dist.Shard(1)],
         )
 
-        def get_layer_ipp(layer_index):
+        def get_layer_pp_info(layer_index):
             mesh = fleet.auto.get_mesh()
-            if "pp" not in mesh.dim_names:
-                return None
+            if is_pp_enable() is False:
+                return None, False
             else:
                 pp_degree = mesh.get_dim_size("pp")
-                layer_per_stage = math.ceil(config.num_hidden_layers / pp_degree)
-                return layer_index // layer_per_stage
+                layer_per_stage = math.ceil(
+                    config.num_hidden_layers / pp_degree
+                )
+                input_need_reshard = layer_index % layer_per_stage == 0
+                return layer_index // layer_per_stage, input_need_reshard
 
-        self.layers = nn.LayerList(
-            [
-                LlamaDecoderLayerAuto(config, i not in self.no_recompute_layers, get_layer_ipp(i))
-                for i in range(config.num_hidden_layers)
-            ]
-        )
+        decoder_layers = []
+        self.next_pp_stage_indexes = []
+        for i in range(config.num_hidden_layers):
+            pp_stage_id, input_need_reshard = get_layer_pp_info(i)
+            decoder_layers.append(
+                LlamaDecoderLayerAuto(config, False, pp_stage_id)
+            )
+            if input_need_reshard:
+                self.next_pp_stage_indexes.append(i)
+
+        self.layers = nn.LayerList(decoder_layers)
         self.norm = LlamaRMSNormAuto(config)
 
         self.gradient_checkpointing = False
@@ -840,13 +861,6 @@ class LlamaModelAuto(LlamaPretrainedModelAuto):
                     combined_attention_mask = _make_causal_mask(
                         input_shape, past_key_values_length=past_key_values_length
                     )
-                    # NOTE(zhaoyingli): infer spmd does not support [seq_len, seq_len] --> [batch, 1, seq_len, seq_len] in data_parallel
-                    combined_attention_mask = dist.shard_tensor(
-                        combined_attention_mask,
-                        get_mesh(),
-                        [dist.Replicate(), dist.Replicate()],
-                    )
-
                     expanded_attn_mask = expanded_attn_mask & combined_attention_mask
             # [bsz, seq_len, seq_len] -> [bsz, 1, seq_len, seq_len]
             elif len(attention_mask.shape) == 3:
@@ -914,10 +928,15 @@ class LlamaModelAuto(LlamaPretrainedModelAuto):
         else:
             alibi = None
 
+        global_mesh = global_mesh_starts_with_pp()
         if position_ids is None:
             position_ids = paddle.arange(seq_length, dtype="int64").expand((batch_size, seq_length))
             # NOTE(zhaoyingli): infer spmd does not support [seq_len] --> [batch, seq_len] in data_parallel
-            position_ids = dist.shard_tensor(position_ids, get_mesh(), [dist.Replicate(), dist.Replicate()])
+        position_ids = dist.shard_tensor(
+            position_ids,
+            global_mesh,
+            [dist.Replicate() for _ in range(len(global_mesh._shape))],
+        )
 
         if self.config.sequence_parallel:
             # [B, S, H] -> [S, B, H]
@@ -930,6 +949,11 @@ class LlamaModelAuto(LlamaPretrainedModelAuto):
             attention_mask = self._prepare_decoder_attention_mask(
                 attention_mask, (batch_size, seq_length), cache_length, inputs_embeds.dtype
             )  # [bs, 1, seq_len, seq_len]
+            attention_mask = dist.shard_tensor(
+                attention_mask,
+                global_mesh,
+                [dist.Replicate() for _ in range(len(global_mesh._shape))],
+            )
 
         hidden_states = inputs_embeds
         hidden_states = dist.reshard(hidden_states, get_mesh(), self.placements)
@@ -947,25 +971,25 @@ class LlamaModelAuto(LlamaPretrainedModelAuto):
 
             has_gradient = not hidden_states.stop_gradient
 
-            if decoder_layer.ipp is not None and pre_ipp != decoder_layer.ipp:
+            if not is_pp_enable():
+                position_ids_input = position_ids
+                attention_mask_input = attention_mask
+            elif idx in self.next_pp_stage_indexes:
+                ipp = decoder_layer.ipp
+                position_ids_input = dist.reshard(
+                    position_ids,
+                    get_mesh(ipp),
+                    [dist.Replicate(), dist.Replicate()],
+                )
+                attention_mask_input = dist.reshard(
+                    attention_mask,
+                    get_mesh(ipp),
+                    [dist.Replicate(), dist.Replicate()],
+                )
                 hidden_states = dist.reshard(
                     hidden_states,
-                    get_mesh(decoder_layer.ipp),
+                    get_mesh(ipp),
                     self.placements,
-                )
-                position_ids = dist.reshard(
-                    position_ids,
-                    get_mesh(decoder_layer.ipp),
-                    [dist.Shard(0), dist.Replicate()],
-                )
-                attention_mask = (
-                    dist.reshard(
-                        attention_mask,
-                        get_mesh(decoder_layer.ipp),
-                        [dist.Shard(0), dist.Replicate()],
-                    )
-                    if attention_mask is not None
-                    else attention_mask
                 )
 
             if (
@@ -977,8 +1001,8 @@ class LlamaModelAuto(LlamaPretrainedModelAuto):
                 layer_outputs = recompute(
                     decoder_layer,
                     hidden_states,
-                    position_ids,
-                    attention_mask,
+                    position_ids_input,
+                    attention_mask_input,
                     output_attentions,
                     past_key_value,
                     use_cache,
@@ -987,8 +1011,8 @@ class LlamaModelAuto(LlamaPretrainedModelAuto):
             else:
                 layer_outputs = decoder_layer(
                     hidden_states,
-                    position_ids,
-                    attention_mask,
+                    position_ids_input,
+                    attention_mask_input,
                     output_attentions,
                     past_key_value,
                     use_cache,
