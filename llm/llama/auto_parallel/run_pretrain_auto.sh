@@ -76,7 +76,8 @@ python -u  -m paddle.distributed.launch \
     --data_impl "mmap" \
     --enable_auto_parallel 1 \
     --max_grad_norm 1.0 \
-    --num_hidden_layers 8 \
+    --num_hidden_layers 4 \
+    --to_static $to_static \
     --virtual_pp_degree 2 \
     --pipeline_schedule_mode "VPP" \
-    --to_static $to_static \
+

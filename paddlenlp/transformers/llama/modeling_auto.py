@@ -917,30 +917,32 @@ class LlamaModelAuto(LlamaPretrainedModelAuto):
         if inputs_embeds is None:
             inputs_embeds = self.embed_tokens(input_ids)
 
-        # embed positions
-        if attention_mask is None:
-            # [bs, seq_len]
-            attention_mask = paddle.ones((batch_size, seq_length_with_past), dtype=paddle.bool)
-
-        if self.config.alibi:
-            alibi = build_alibi_tensor(attention_mask, self.config.num_attention_heads, dtype=inputs_embeds.dtype)
-            alibi = alibi.reshape([batch_size * self.config.num_attention_heads, 1, seq_length_with_past])
-        else:
-            alibi = None
+        if self.config.sequence_parallel:
+            # [B, S, H] -> [S, B, H]
+            inputs_embeds = paddle.transpose(inputs_embeds, [1, 0, 2])
 
         global_mesh = global_mesh_starts_with_pp()
         if position_ids is None:
-            position_ids = paddle.arange(seq_length, dtype="int64").expand((batch_size, seq_length))
-            # NOTE(zhaoyingli): infer spmd does not support [seq_len] --> [batch, seq_len] in data_parallel
+            arange = dist.shard_op(paddle.arange, global_mesh)
+            position_ids = arange(seq_length, dtype="int64").expand((batch_size, seq_length))
+
         position_ids = dist.shard_tensor(
             position_ids,
             global_mesh,
             [dist.Replicate() for _ in range(len(global_mesh._shape))],
         )
 
-        if self.config.sequence_parallel:
-            # [B, S, H] -> [S, B, H]
-            inputs_embeds = paddle.transpose(inputs_embeds, [1, 0, 2])
+        # embed positions
+        if attention_mask is None:
+            # [bs, seq_len]
+            ones = dist.shard_op(paddle.ones, global_mesh)
+            attention_mask = ones((batch_size, seq_length_with_past), dtype=paddle.bool)
+
+        if self.config.alibi:
+            alibi = build_alibi_tensor(attention_mask, self.config.num_attention_heads, dtype=inputs_embeds.dtype)
+            alibi = alibi.reshape([batch_size * self.config.num_attention_heads, 1, seq_length_with_past])
+        else:
+            alibi = None
 
         if self.config.use_flash_attention:
             # attention_mask in flash_attn is always None for pretrain
@@ -963,7 +965,6 @@ class LlamaModelAuto(LlamaPretrainedModelAuto):
         all_self_attns = () if output_attentions else None
         next_decoder_cache = () if use_cache else None
 
-        pre_ipp = None
         for idx, (decoder_layer) in enumerate(self.layers):
             if output_hidden_states:
                 all_hidden_states += (hidden_states,)
@@ -976,21 +977,24 @@ class LlamaModelAuto(LlamaPretrainedModelAuto):
                 attention_mask_input = attention_mask
             elif idx in self.next_pp_stage_indexes:
                 ipp = decoder_layer.ipp
-                position_ids_input = dist.reshard(
-                    position_ids,
-                    get_mesh(ipp),
-                    [dist.Replicate(), dist.Replicate()],
-                )
-                attention_mask_input = dist.reshard(
-                    attention_mask,
-                    get_mesh(ipp),
-                    [dist.Replicate(), dist.Replicate()],
-                )
+                # position_ids_input = dist.reshard(
+                #     position_ids,
+                #     get_mesh(ipp),
+                #     [dist.Replicate(), dist.Replicate()],
+                # )
+                # attention_mask_input = dist.reshard(
+                #     attention_mask,
+                #     get_mesh(ipp),
+                #     [dist.Replicate(), dist.Replicate()],
+                # )
+                position_ids_input = position_ids
+                attention_mask_input = attention_mask
                 hidden_states = dist.reshard(
                     hidden_states,
                     get_mesh(ipp),
                     self.placements,
                 )
+                decoder_layer = dist.shard_op(decoder_layer, get_mesh(ipp))
 
             if (
                 self.enable_recompute
@@ -1018,8 +1022,6 @@ class LlamaModelAuto(LlamaPretrainedModelAuto):
                     use_cache,
                     alibi=alibi,
                 )
-
-            pre_ipp = decoder_layer.ipp
 
             if type(layer_outputs) is tuple:
                 hidden_states = layer_outputs[0]
