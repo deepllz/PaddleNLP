@@ -923,8 +923,7 @@ class LlamaModelAuto(LlamaPretrainedModelAuto):
 
         global_mesh = global_mesh_starts_with_pp()
         if position_ids is None:
-            arange = dist.shard_op(paddle.arange, global_mesh)
-            position_ids = arange(seq_length, dtype="int64").expand((batch_size, seq_length))
+            position_ids = paddle.arange(seq_length, dtype="int64").expand((batch_size, seq_length))
 
         position_ids = dist.shard_tensor(
             position_ids,
@@ -935,8 +934,7 @@ class LlamaModelAuto(LlamaPretrainedModelAuto):
         # embed positions
         if attention_mask is None:
             # [bs, seq_len]
-            ones = dist.shard_op(paddle.ones, global_mesh)
-            attention_mask = ones((batch_size, seq_length_with_past), dtype=paddle.bool)
+            attention_mask = paddle.ones((batch_size, seq_length_with_past), dtype=paddle.bool)
 
         if self.config.alibi:
             alibi = build_alibi_tensor(attention_mask, self.config.num_attention_heads, dtype=inputs_embeds.dtype)
@@ -971,30 +969,28 @@ class LlamaModelAuto(LlamaPretrainedModelAuto):
             past_key_value = past_key_values[idx] if past_key_values is not None else None
 
             has_gradient = not hidden_states.stop_gradient
-
+            ipp = decoder_layer.ipp
             if not is_pp_enable():
                 position_ids_input = position_ids
                 attention_mask_input = attention_mask
-            elif idx in self.next_pp_stage_indexes:
-                ipp = decoder_layer.ipp
-                # position_ids_input = dist.reshard(
-                #     position_ids,
-                #     get_mesh(ipp),
-                #     [dist.Replicate(), dist.Replicate()],
-                # )
-                # attention_mask_input = dist.reshard(
-                #     attention_mask,
-                #     get_mesh(ipp),
-                #     [dist.Replicate(), dist.Replicate()],
-                # )
-                position_ids_input = position_ids
-                attention_mask_input = attention_mask
+            else:
+                position_ids_input = dist.reshard(
+                    position_ids,
+                    get_mesh(ipp),
+                    [dist.Replicate(), dist.Replicate()],
+                )
+                attention_mask_input = dist.reshard(
+                    attention_mask,
+                    get_mesh(ipp),
+                    [dist.Replicate(), dist.Replicate()],
+                )
+
+            if idx in self.next_pp_stage_indexes:
                 hidden_states = dist.reshard(
                     hidden_states,
                     get_mesh(ipp),
                     self.placements,
                 )
-                decoder_layer = dist.shard_op(decoder_layer, get_mesh(ipp))
 
             if (
                 self.enable_recompute

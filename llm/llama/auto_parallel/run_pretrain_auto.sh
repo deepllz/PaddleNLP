@@ -34,7 +34,8 @@ export PYTHONPATH=../../../:$PYTHONPATH
 # export NVIDIA_TF32_OVERRIDE=0
 
 to_static=1  # 是否开启动转静训练
-
+# --gpus "0,1" \
+# --gpus "0,1,2,3,4,5,6,7" \
 python -u  -m paddle.distributed.launch \
     --gpus "0,1,2,3,4,5,6,7" \
     --log_dir "auto_3d" \
