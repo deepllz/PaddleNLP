@@ -211,6 +211,15 @@ class ModelArguments:
         default=False,
         metadata={"help": "whether to fuse first up and gate proj in mlp block"},
     )
+    # this optional can be use in run_pretrain.py
+    use_fast_layer_norm: bool = field(
+        default=False,
+        metadata={"help": "GPT3 model, use fast layernorm"},
+    )
+    use_fused_dropout_add: bool = field(
+        default=False,
+        metadata={"help": "Gpt3 model, use_fused_dropout_add"},
+    )
     recompute_granularity: str = field(
         default="full",
         metadata={"help": "Choose among ['full', 'core_attn', 'full_attn']"},
@@ -360,6 +369,7 @@ def get_train_data_file(args):
 class PretrainingTrainer(AutoTrainer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.is_pretraining = True
 
     def _wrap_for_dist_loader(self, train_dataloader):
         dist_loader = super()._wrap_for_dist_loader(train_dataloader)
@@ -503,7 +513,7 @@ def main():
     config.num_attention_heads = (
         model_args.num_attention_heads if model_args.num_attention_heads is not None else config.num_attention_heads
     )
-
+    config.use_fused_dropout_add = model_args.use_fused_dropout_add
     config.use_flash_attention = model_args.use_flash_attention
     config.use_fused_rms_norm = model_args.use_fused_rms_norm
     config.fuse_attention_qkv = model_args.fuse_attention_qkv
@@ -545,6 +555,8 @@ def main():
         def fn(layer):
             if hasattr(layer, "enable_recompute") and (layer.enable_recompute is False or layer.enable_recompute == 0):
                 layer.enable_recompute = True
+                if hasattr(layer, "layerwise_recompute"):
+                    layer.layerwise_recompute = True
 
         model.apply(fn)
 
@@ -599,7 +611,7 @@ def main():
         checkpoint = training_args.resume_from_checkpoint
     elif last_checkpoint is not None:
         checkpoint = last_checkpoint
-
+    print(trainer.model)
     # Training
     if training_args.do_train:
         train_result = trainer.train(resume_from_checkpoint=checkpoint)
