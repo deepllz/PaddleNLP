@@ -211,6 +211,15 @@ class ModelArguments:
         default=False,
         metadata={"help": "whether to fuse first up and gate proj in mlp block"},
     )
+    # this optional can be use in run_pretrain.py
+    use_fast_layer_norm: bool = field(
+        default=False,
+        metadata={"help": "GPT3 model, use fast layernorm"},
+    )
+    use_fused_dropout_add: bool = field(
+        default=False,
+        metadata={"help": "Gpt3 model, use_fused_dropout_add"},
+    )
     recompute_granularity: str = field(
         default="full",
         metadata={"help": "Choose among ['full', 'core_attn', 'full_attn']"},
@@ -360,6 +369,7 @@ def get_train_data_file(args):
 class PretrainingTrainer(AutoTrainer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.is_pretraining = True
 
     def _wrap_for_dist_loader(self, train_dataloader):
         dist_loader = super()._wrap_for_dist_loader(train_dataloader)
@@ -398,13 +408,18 @@ def init_seed(seed: int = 1234, args=None):
     else:
         assert not args.use_hybrid_parallel and args.enable_auto_parallel
         if dist.get_world_size() > 1:
+            if args.hybrid_parallel_topo_order is None or args.hybrid_parallel_topo_order == "pp_first":
+                order = ["pp", "dp", "sharding", "mp", "sep"]
+            elif args.hybrid_parallel_topo_order == "sharding_first":
+                order = ["dp", "sharding", "pp", "mp", "sep"]
             topo = Topology(
                 dist.get_rank(),
                 dist.get_world_size(),
-                dp_degree=args.data_parallel_degree,
+                dp_degree=max(args.data_parallel_degree, args.sharding_parallel_degree),
                 pp_degree=args.pipeline_parallel_degree,
                 mp_degree=args.tensor_parallel_degree,
-                sharding_degree=1,  # auto_parallel's sharding is not orthogonal with dp, mp and pp
+                sharding_degree=1,
+                order=order,
             )
 
             global_seed, local_seed, random_seed = _get_distributed_seeds(args.seed, topo)
@@ -498,7 +513,7 @@ def main():
     config.num_attention_heads = (
         model_args.num_attention_heads if model_args.num_attention_heads is not None else config.num_attention_heads
     )
-
+    config.use_fused_dropout_add = model_args.use_fused_dropout_add
     config.use_flash_attention = model_args.use_flash_attention
     config.use_fused_rms_norm = model_args.use_fused_rms_norm
     config.fuse_attention_qkv = model_args.fuse_attention_qkv
@@ -532,14 +547,16 @@ def main():
             dtype = "float16"
         if training_args.bf16:
             dtype = "bfloat16"
-
-    model = model_class.from_config(config, dtype=dtype)
-    criterion = criterion_class(config)
+    with paddle.LazyGuard():
+        model = model_class.from_config(config, dtype=dtype)
+        criterion = criterion_class(config)
     if training_args.recompute:
 
         def fn(layer):
             if hasattr(layer, "enable_recompute") and (layer.enable_recompute is False or layer.enable_recompute == 0):
                 layer.enable_recompute = True
+                if hasattr(layer, "layerwise_recompute"):
+                    layer.layerwise_recompute = True
 
         model.apply(fn)
 
@@ -594,7 +611,7 @@ def main():
         checkpoint = training_args.resume_from_checkpoint
     elif last_checkpoint is not None:
         checkpoint = last_checkpoint
-
+    print(trainer.model)
     # Training
     if training_args.do_train:
         train_result = trainer.train(resume_from_checkpoint=checkpoint)
