@@ -56,8 +56,8 @@ python -u -m paddle.distributed.launch \
     --do_train \
     --do_eval \
     --device "gpu" \
-    --model_type "gpt_network" \
-    --use_intermediate_api true \
+    --model_type "gpt" \
+    --use_intermediate_api false \
     --sharding "stage1" \
     --tensor_parallel_degree 1 \
     --pipeline_parallel_degree 1 \
